@@ -30,7 +30,6 @@ class UserAuthenticated extends AuthState {
 
   @override
   List<TokenPair> get props => [tokenPair];
-
 }
 
 class RefreshingTokens extends AuthState {

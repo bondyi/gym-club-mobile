@@ -14,8 +14,8 @@ class RegisterUserEvent extends AuthEvent {
     required this.name,
     required this.surname,
     required this.birthDate,
-    required this.gender
-});
+    required this.gender,
+  });
 
   final String phoneNumber;
   final String password;
@@ -25,14 +25,15 @@ class RegisterUserEvent extends AuthEvent {
   final bool gender;
 
   @override
-  List<Object?> get props => [phoneNumber, password, name, surname, birthDate, gender];
+  List<Object?> get props =>
+      [phoneNumber, password, name, surname, birthDate, gender];
 }
 
 class LoginUserEvent extends AuthEvent {
   const LoginUserEvent({
     required this.phoneNumber,
-    required this.password
-});
+    required this.password,
+  });
 
   final String phoneNumber;
   final String password;

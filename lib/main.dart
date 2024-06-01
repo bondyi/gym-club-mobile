@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gym_club_mobile/src/auth/presentation/views/login_screen.dart';
-
-import 'core/services/injection_container.dart';
+import 'package:gym_club_mobile/core/services/injection_container.dart';
+import 'package:gym_club_mobile/core/services/router.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,9 +15,14 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        useMaterial3: true
+        useMaterial3: true,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.cyanAccent),
+        appBarTheme: const AppBarTheme(
+          color: Colors.transparent,
+        ),
       ),
-      home: const LoginScreen(),
+      onGenerateRoute: generateRoute,
     );
   }
 }

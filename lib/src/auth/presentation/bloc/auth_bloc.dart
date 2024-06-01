@@ -7,6 +7,7 @@ import 'package:gym_club_mobile/src/auth/domain/usecases/refresh_tokens.dart';
 import 'package:gym_club_mobile/src/auth/domain/usecases/register_user.dart';
 
 part 'auth_event.dart';
+
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
@@ -14,8 +15,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     required RegisterUser registerUser,
     required LoginUser loginUser,
     required RefreshTokens refreshTokens,
-}) :
-        _registerUser = registerUser,
+  })  : _registerUser = registerUser,
         _loginUser = loginUser,
         _refreshTokens = refreshTokens,
         super(const AuthInitial()) {
@@ -29,53 +29,62 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final RefreshTokens _refreshTokens;
 
   Future<void> _registerUserHandler(
-      RegisterUserEvent event,
-      Emitter<AuthState> emit
-      ) async {
+    RegisterUserEvent event,
+    Emitter<AuthState> emit,
+  ) async {
     emit(const RegisteringUser());
 
-    final result = await _registerUser(RegisterUserParams(
+    final result = await _registerUser(
+      RegisterUserParams(
         phoneNumber: event.phoneNumber,
         password: event.password,
         name: event.name,
         surname: event.surname,
         birthDate: event.birthDate,
-        gender: event.gender
-    ));
+        gender: event.gender,
+      ),
+    );
 
     result.fold(
-            (failure) => emit(AuthError(failure.errorMessage)),
-            (_) => emit(const UserRegistered()));
+      (failure) => emit(AuthError(failure.errorMessage)),
+      (_) => emit(const UserRegistered()),
+    );
   }
 
   Future<void> _loginUserHandler(
-      LoginUserEvent event,
-      Emitter<AuthState> emit
-      ) async {
+    LoginUserEvent event,
+    Emitter<AuthState> emit,
+  ) async {
     emit(const AuthenticatingUser());
 
-    final result = await _loginUser(LoginUserParams(
+    final result = await _loginUser(
+      LoginUserParams(
         phoneNumber: event.phoneNumber,
-        password: event.password
-    ));
+        password: event.password,
+      ),
+    );
 
     result.fold(
-            (failure) => emit(AuthError(failure.errorMessage)),
-            (tokenPair) => emit(UserAuthenticated(tokenPair)));
+      (failure) => emit(AuthError(failure.errorMessage)),
+      (tokenPair) => emit(UserAuthenticated(tokenPair)),
+    );
   }
 
   Future<void> _refreshTokensHandler(
-      RefreshTokensEvent event,
-      Emitter<AuthState> emit
-      ) async {
+    RefreshTokensEvent event,
+    Emitter<AuthState> emit,
+  ) async {
     emit(const RefreshingTokens());
 
-    final result = await _refreshTokens(RefreshTokensParams(
-        refreshToken: event.refreshToken
-    ));
+    final result = await _refreshTokens(
+      RefreshTokensParams(
+        refreshToken: event.refreshToken,
+      ),
+    );
 
     result.fold(
-            (failure) => emit(AuthError(failure.errorMessage)),
-            (tokenPair) => emit(TokensRefreshed(tokenPair)));
+      (failure) => emit(AuthError(failure.errorMessage)),
+      (tokenPair) => emit(TokensRefreshed(tokenPair)),
+    );
   }
 }

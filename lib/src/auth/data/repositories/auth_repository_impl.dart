@@ -12,13 +12,19 @@ class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource _remoteDataSource;
 
   @override
-  ResultFuture<TokenPair> loginUser(
-      {required String phoneNumber, required String password}) async {
+  ResultFuture<TokenPair> loginUser({
+    required String phoneNumber,
+    required String password,
+  }) async {
     try {
-      return Right(await _remoteDataSource.loginUser(
-          phoneNumber: phoneNumber, password: password));
-    } on ApiException catch (e) {
-      return Left(ApiFailure.fromException(e));
+      return Right(
+        await _remoteDataSource.loginUser(
+          phoneNumber: phoneNumber,
+          password: password,
+        ),
+      );
+    } on ServerException catch (e) {
+      return Left(ServerFailure.fromException(e));
     }
   }
 
@@ -26,31 +32,34 @@ class AuthRepositoryImpl implements AuthRepository {
   ResultFuture<TokenPair> refreshTokens({required String refreshToken}) async {
     try {
       return Right(
-          await _remoteDataSource.refreshTokens(refreshToken: refreshToken));
-    } on ApiException catch (e) {
-      return Left(ApiFailure.fromException(e));
+        await _remoteDataSource.refreshTokens(refreshToken: refreshToken),
+      );
+    } on ServerException catch (e) {
+      return Left(ServerFailure.fromException(e));
     }
   }
 
   @override
-  ResultFuture<void> registerUser(
-      {required String phoneNumber,
-      required String password,
-      required String name,
-      required String surname,
-      required String birthDate,
-      required bool gender}) async {
+  ResultFuture<void> registerUser({
+    required String phoneNumber,
+    required String password,
+    required String name,
+    required String surname,
+    required String birthDate,
+    required bool gender,
+  }) async {
     try {
       await _remoteDataSource.registerUser(
-          phoneNumber: phoneNumber,
-          password: password,
-          name: name,
-          surname: surname,
-          birthDate: birthDate,
-          gender: gender);
+        phoneNumber: phoneNumber,
+        password: password,
+        name: name,
+        surname: surname,
+        birthDate: birthDate,
+        gender: gender,
+      );
       return const Right(null);
-    } on ApiException catch (e) {
-      return Left(ApiFailure.fromException(e));
+    } on ServerException catch (e) {
+      return Left(ServerFailure.fromException(e));
     }
   }
 }

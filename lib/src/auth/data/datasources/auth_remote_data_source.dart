@@ -6,16 +6,19 @@ import 'package:gym_club_mobile/src/auth/data/models/token_pair_model.dart';
 import 'package:http/http.dart' as http;
 
 abstract class AuthRemoteDataSource {
-  Future<void> registerUser(
-      {required String phoneNumber,
-      required String password,
-      required String name,
-      required String surname,
-      required String birthDate,
-      required bool gender});
+  Future<void> registerUser({
+    required String phoneNumber,
+    required String password,
+    required String name,
+    required String surname,
+    required String birthDate,
+    required bool gender,
+  });
 
-  Future<TokenPairModel> loginUser(
-      {required String phoneNumber, required String password});
+  Future<TokenPairModel> loginUser({
+    required String phoneNumber,
+    required String password,
+  });
 
   Future<TokenPairModel> refreshTokens({required String refreshToken});
 }
@@ -30,22 +33,28 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final http.Client _client;
 
   @override
-  Future<TokenPairModel> loginUser(
-      {required String phoneNumber, required String password}) async {
+  Future<TokenPairModel> loginUser({
+    required String phoneNumber,
+    required String password,
+  }) async {
     try {
-      final response = await _client.post(Uri.https(baseUrl, loginUserEndpoint),
-          body: jsonEncode({'PhoneNumber': phoneNumber, 'Password': password}));
+      final response = await _client.post(
+        Uri.https(baseUrl, loginUserEndpoint),
+        body: jsonEncode({'PhoneNumber': phoneNumber, 'Password': password}),
+      );
 
       if (response.statusCode != 200 && response.statusCode != 201) {
-        throw ApiException(
-            message: response.body, statusCode: response.statusCode);
+        throw ServerException(
+          message: response.body,
+          statusCode: response.statusCode,
+        );
       }
 
       return jsonDecode(response.body) as TokenPairModel;
-    } on ApiException {
+    } on ServerException {
       rethrow;
     } catch (e) {
-      throw ApiException(message: e.toString(), statusCode: 505);
+      throw ServerException(message: e.toString(), statusCode: 505);
     }
   }
 
@@ -53,51 +62,58 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<TokenPairModel> refreshTokens({required String refreshToken}) async {
     try {
       final response = await _client.post(
-          Uri.https(baseUrl, refreshTokensEndpoint),
-          body: jsonEncode({'RefreshToken': refreshToken}));
+        Uri.https(baseUrl, refreshTokensEndpoint),
+        body: jsonEncode({'RefreshToken': refreshToken}),
+      );
 
       if (response.statusCode != 200 && response.statusCode != 201) {
-        throw ApiException(
-            message: response.body, statusCode: response.statusCode);
+        throw ServerException(
+          message: response.body,
+          statusCode: response.statusCode,
+        );
       }
 
       return jsonDecode(response.body) as TokenPairModel;
-    } on ApiException {
+    } on ServerException {
       rethrow;
     } catch (e) {
-      throw ApiException(message: e.toString(), statusCode: 505);
+      throw ServerException(message: e.toString(), statusCode: 505);
     }
   }
 
   @override
-  Future<void> registerUser(
-      {required String phoneNumber,
-      required String password,
-      required String name,
-      required String surname,
-      required String birthDate,
-      required bool gender}) async {
+  Future<void> registerUser({
+    required String phoneNumber,
+    required String password,
+    required String name,
+    required String surname,
+    required String birthDate,
+    required bool gender,
+  }) async {
     try {
-      final response =
-          await _client.post(Uri.https(baseUrl, registerUserEndpoint),
-              body: jsonEncode({
-                'UserRole': 'client',
-                'PhoneNumber': phoneNumber,
-                'Password': password,
-                'Name': name,
-                'Surname': surname,
-                'BirthDate': birthDate,
-                'Gender': gender
-              }));
+      final response = await _client.post(
+        Uri.https(baseUrl, registerUserEndpoint),
+        body: jsonEncode({
+          'UserRole': 'client',
+          'PhoneNumber': phoneNumber,
+          'Password': password,
+          'Name': name,
+          'Surname': surname,
+          'BirthDate': birthDate,
+          'Gender': gender,
+        }),
+      );
 
       if (response.statusCode != 200 && response.statusCode != 201) {
-        throw ApiException(
-            message: response.body, statusCode: response.statusCode);
+        throw ServerException(
+          message: response.body,
+          statusCode: response.statusCode,
+        );
       }
-    } on ApiException {
+    } on ServerException {
       rethrow;
     } catch (e) {
-      throw ApiException(message: e.toString(), statusCode: 505);
+      throw ServerException(message: e.toString(), statusCode: 505);
     }
   }
 }
