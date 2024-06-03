@@ -1,0 +1,9 @@
+{
+  "onBoardingTitleFirst": "Welcome.",
+  "onBoardingDescriptionFirst": "This is a mobile application for clients and trainers of the GymClub gym.",
+  "onBoardingTitleSecond": "Training programs.",
+  "onBoardingDescriptionSecond": "Choose a suitable training program for yourself and track its progress.",
+  "onBoardingTitleThird": "Classes with trainers.",
+  "onBoardingDescriptionThird": "Sign up for group classes with trainers.",
+  "onBoardingButtonGetStarted": "Get started"
+}

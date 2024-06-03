@@ -1,6 +1,6 @@
-// ignore_for_file: lines_longer_than_80_chars
-
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PageContent extends Equatable {
   const PageContent({
@@ -8,24 +8,22 @@ class PageContent extends Equatable {
     required this.description,
   });
 
-  const PageContent.first()
+  PageContent.first(BuildContext context)
       : this(
-          title: 'Добро пожаловать.',
-          description:
-              'Это мобильное приложение для клиентов и тренеров тренажерного зала GymClub.',
+          title: AppLocalizations.of(context)!.onBoardingTitleFirst,
+          description: AppLocalizations.of(context)!.onBoardingDescriptionFirst,
         );
 
-  const PageContent.second()
+  PageContent.second(BuildContext context)
       : this(
-          title: 'Программы тренировок.',
-          description:
-              'Подберите для себя подходящую программу тренировок и отслеживайте её прогресс.',
+          title: AppLocalizations.of(context)!.onBoardingTitleSecond,
+          description: AppLocalizations.of(context)!.onBoardingDescriptionSecond,
         );
 
-  const PageContent.third()
+  PageContent.third(BuildContext context)
       : this(
-          title: 'Занятия с тренерами.',
-          description: 'Записывайтесь на групповые занятия с тренерами.',
+          title: AppLocalizations.of(context)!.onBoardingTitleThird,
+          description: AppLocalizations.of(context)!.onBoardingDescriptionThird,
         );
 
   final String title;

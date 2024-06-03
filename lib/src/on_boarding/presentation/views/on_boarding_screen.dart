@@ -59,10 +59,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       selectedPage = page;
                     });
                   },
-                  children: const [
-                    OnBoardingBody(pageContent: PageContent.first()),
-                    OnBoardingBody(pageContent: PageContent.second()),
-                    OnBoardingBody(pageContent: PageContent.third()),
+                  children: [
+                    OnBoardingBody(pageContent: PageContent.first(context)),
+                    OnBoardingBody(pageContent: PageContent.second(context)),
+                    OnBoardingBody(pageContent: PageContent.third(context)),
                   ],
                 ),
                 Align(

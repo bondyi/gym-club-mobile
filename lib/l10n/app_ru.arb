@@ -1,0 +1,9 @@
+{
+  "onBoardingTitleFirst": "Добро пожаловать.",
+  "onBoardingDescriptionFirst": "Это мобильное приложение для клиентов и тренеров тренажерного зала GymClub.",
+  "onBoardingTitleSecond": "Программы тренировок.",
+  "onBoardingDescriptionSecond": "Подберите для себя подходящую программу тренировок и отслеживайте её прогресс.",
+  "onBoardingTitleThird": "Занятия с тренерами.",
+  "onBoardingDescriptionThird": "Записывайтесь на групповые занятия с тренерами.",
+  "onBoardingButtonGetStarted": "Начать"
+}

@@ -13,8 +13,11 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.5
+  flutter_localizations:
+    sdk: flutter
   get_it: ^7.7.0
   http: ^1.2.1
+  intl: any
   page_view_dot_indicator: ^2.3.0
   provider: ^6.1.2
   shared_preferences: ^2.2.3
@@ -27,3 +30,4 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  generate: true
