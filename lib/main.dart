@@ -18,6 +18,7 @@ class MainApp extends StatelessWidget {
         useMaterial3: true,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.cyanAccent),
+        scaffoldBackgroundColor: Colors.white,
         appBarTheme: const AppBarTheme(
           color: Colors.transparent,
         ),
