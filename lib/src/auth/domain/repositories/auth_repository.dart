@@ -19,4 +19,11 @@ abstract class AuthRepository {
   });
 
   ResultFuture<TokenPair> refreshTokens({required String refreshToken});
+
+  ResultFuture<void> setTokens({
+    required String accessToken,
+    required String refreshToken,
+  });
+
+  ResultFuture<TokenPair> getTokens();
 }
