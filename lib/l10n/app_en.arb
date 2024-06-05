@@ -9,14 +9,17 @@
 
   "authLoginTitle": "Login",
   "authRegisterTitle": "Register",
-  "authTextFieldPhoneNumber": "Phone number",
-  "authTextFieldPassword": "Password",
-  "authTextFieldName": "Name",
-  "authTextFieldSurname": "Surname",
-  "authTextFieldDateOfBirth": "Date of birth",
-  "authTextFieldGender": "Gender",
-  "authGenderMale": "Male",
-  "authGenderFemale": "Female",
+  "phoneNumber": "Phone number",
+  "password": "Password",
+  "name": "Name",
+  "surname": "Surname",
+  "birthDate": "Date of birth",
+  "gender": "Gender",
+  "genderMale": "Male",
+  "genderFemale": "Female",
   "authButtonSignIn": "Sign in",
-  "authButtonSignUp": "Sign up"
+  "authButtonSignUp": "Sign up",
+  "authUserRegistered": "Registration successful!",
+
+  "textFormFieldValidatorMessage": "This field is required"
 }

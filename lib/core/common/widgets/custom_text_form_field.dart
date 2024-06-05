@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:gym_club_mobile/core/extensions/context_extension.dart';
 
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({
+class CustomTextFormField extends StatelessWidget {
+  const CustomTextFormField({
     required this.controller,
     this.filled = false,
     this.obscureText = false,
@@ -15,6 +16,7 @@ class CustomTextField extends StatelessWidget {
     this.keyboardType,
     this.hintStyle,
     this.overrideValidator = false,
+    this.onTap,
   });
 
   final String? Function(String?)? validator;
@@ -28,6 +30,7 @@ class CustomTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final bool overrideValidator;
   final TextStyle? hintStyle;
+  final GestureTapCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +40,8 @@ class CustomTextField extends StatelessWidget {
           ? validator
           : (value) {
               if (value == null || value.isEmpty) {
-                return 'This field is required';
+                return AppLocalizations.of(context)
+                    !.textFormFieldValidatorMessage;
               }
               return validator?.call(value);
             },
@@ -47,6 +51,7 @@ class CustomTextField extends StatelessWidget {
       keyboardType: keyboardType,
       obscureText: obscureText,
       readOnly: readOnly,
+      onTap: onTap,
       decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(40),

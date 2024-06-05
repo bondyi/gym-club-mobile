@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:gym_club_mobile/core/common/widgets/background.dart';
-import 'package:gym_club_mobile/core/common/widgets/custom_button.dart';
+import 'package:gym_club_mobile/core/common/widgets/custom_elevated_button.dart';
 import 'package:gym_club_mobile/core/extensions/context_extension.dart';
 import 'package:gym_club_mobile/core/utils/core_utils.dart';
 import 'package:gym_club_mobile/src/auth/presentation/bloc/auth_bloc.dart';
@@ -71,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     if (state is AuthLoading)
                       const Center(child: CircularProgressIndicator())
                     else
-                      CustomButton(
+                      CustomElevatedButton(
                         label: AppLocalizations.of(context)!.authButtonSignIn,
                         onPressed: () {
                           FocusManager.instance.primaryFocus?.unfocus();

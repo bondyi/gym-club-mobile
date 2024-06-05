@@ -13,7 +13,6 @@ Route<dynamic> generateRoute(RouteSettings settings) {
               child: const OnBoardingScreen(),
             );
           }
-
           final accessToken = preferences.getString(spAccessTokenKey);
           final refreshToken = preferences.getString(spRefreshTokenKey);
 
@@ -22,12 +21,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
               accessToken: accessToken,
               refreshToken: refreshToken,
             );
-
             context.tokenPairProvider.initTokenPair(tokenPair);
-
             return const Dashboard();
           }
-
           return BlocProvider(
             create: (_) => sl<AuthBloc>(),
             child: const LoginScreen(),
@@ -35,6 +31,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         },
         settings: settings,
       );
+
     case LoginScreen.routeName:
       return _pageBuilder(
         (_) => BlocProvider(
@@ -43,6 +40,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         ),
         settings: settings,
       );
+
     case RegisterScreen.routeName:
       return _pageBuilder(
         (_) => BlocProvider(
@@ -51,11 +49,13 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         ),
         settings: settings,
       );
+
     case Dashboard.routeName:
       return _pageBuilder(
         (_) => const Dashboard(),
         settings: settings,
       );
+
     default:
       return _pageBuilder(
         (_) => const PageUnderConstruction(),

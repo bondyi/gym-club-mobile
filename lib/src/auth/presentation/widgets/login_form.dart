@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:gym_club_mobile/core/common/widgets/custom_text_field.dart';
+import 'package:gym_club_mobile/core/common/widgets/custom_text_form_field.dart';
 import 'package:gym_club_mobile/core/extensions/context_extension.dart';
 
 class LoginForm extends StatefulWidget {
@@ -28,15 +28,15 @@ class _LoginFormState extends State<LoginForm> {
       key: widget.formKey,
       child: Column(
         children: [
-          CustomTextField(
+          CustomTextFormField(
             controller: widget.phoneNumberController,
-            hintText: AppLocalizations.of(context)?.authTextFieldPhoneNumber,
+            hintText: AppLocalizations.of(context)!.phoneNumber,
             keyboardType: TextInputType.phone,
           ),
           const SizedBox(height: 10),
-          CustomTextField(
+          CustomTextFormField(
             controller: widget.passwordController,
-            hintText: AppLocalizations.of(context)?.authTextFieldPassword,
+            hintText: AppLocalizations.of(context)!.password,
             obscureText: obscurePassword,
             keyboardType: TextInputType.visiblePassword,
             suffixIcon: IconButton(

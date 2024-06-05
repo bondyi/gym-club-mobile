@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gym_club_mobile/core/extensions/context_extension.dart';
 
-class CustomButton extends StatelessWidget {
-  const CustomButton({
+class CustomElevatedButton extends StatelessWidget {
+  const CustomElevatedButton({
     required this.label,
     required this.onPressed,
     this.buttonColor,
@@ -11,7 +11,7 @@ class CustomButton extends StatelessWidget {
   });
 
   final String label;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final Color? buttonColor;
   final Color? labelColor;
 

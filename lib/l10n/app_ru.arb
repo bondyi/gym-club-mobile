@@ -9,14 +9,17 @@
 
   "authLoginTitle": "Авторизация",
   "authRegisterTitle": "Регистрация",
-  "authTextFieldPhoneNumber": "Номер телефона",
-  "authTextFieldPassword": "Пароль",
-  "authTextFieldName": "Имя",
-  "authTextFieldSurname": "Фамилия",
-  "authTextFieldDateOfBirth": "Дата рождения",
-  "authTextFieldGender": "Пол",
-  "authGenderMale": "Мужской",
-  "authGenderFemale": "Женский",
+  "phoneNumber": "Номер телефона",
+  "password": "Пароль",
+  "name": "Имя",
+  "surname": "Фамилия",
+  "birthDate": "Дата рождения",
+  "gender": "Пол",
+  "genderMale": "Мужской",
+  "genderFemale": "Женский",
   "authButtonSignIn": "Войти",
-  "authButtonSignUp": "Зарегистрироваться"
+  "authButtonSignUp": "Зарегистрироваться",
+  "authUserRegistered": "Регистрация успешна.",
+
+  "textFormFieldValidatorMessage": "Это поле обязательно к заполнению"
 }

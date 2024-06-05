@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:gym_club_mobile/core/common/widgets/background.dart';
+import 'package:gym_club_mobile/core/common/widgets/custom_elevated_button.dart';
 import 'package:gym_club_mobile/core/utils/core_utils.dart';
 import 'package:gym_club_mobile/src/auth/presentation/bloc/auth_bloc.dart';
 import 'package:gym_club_mobile/src/auth/presentation/views/login_screen.dart';
+import 'package:gym_club_mobile/src/auth/presentation/widgets/register_form.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -19,15 +21,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final phoneNumberController = TextEditingController();
   final passwordController = TextEditingController();
   final nameController = TextEditingController();
+  final surnameController = TextEditingController();
+  final birthDateController = TextEditingController();
+  Gender gender = Gender.male;
   final formKey = GlobalKey<FormState>();
-
-  late bool _isObscure = true;
 
   @override
   void dispose() {
     phoneNumberController.dispose();
     passwordController.dispose();
     nameController.dispose();
+    surnameController.dispose();
+    birthDateController.dispose();
     super.dispose();
   }
 
@@ -61,60 +66,74 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    TextField(
-                      decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        labelText: AppLocalizations.of(context)!
-                            .authTextFieldPhoneNumber,
-                      ),
-                      keyboardType: TextInputType.phone,
+                    RegisterForm(
+                      phoneNumberController: phoneNumberController,
+                      passwordController: passwordController,
+                      nameController: nameController,
+                      surnameController: surnameController,
+                      birthDateController: birthDateController,
+                      formKey: formKey,
                     ),
                     const SizedBox(height: 10),
-                    TextField(
-                      decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        labelText:
-                        AppLocalizations.of(context)!.authTextFieldPassword,
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            _isObscure
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              _isObscure = !_isObscure;
-                            });
-                          },
-                        ),
+                    ListTile(
+                      title: Text(
+                        AppLocalizations.of(context)!.genderMale,
                       ),
-                      obscureText: _isObscure,
-                    ),
-                    const SizedBox(height: 10),
-                    TextField(
-                      decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        labelText:
-                        AppLocalizations.of(context)!.authTextFieldName,
+                      leading: Radio<Gender>(
+                        value: Gender.male,
+                        groupValue: gender,
+                        onChanged: (Gender? value) {
+                          setState(() {
+                            gender = value!;
+                          });
+                        },
                       ),
                     ),
-                    const SizedBox(height: 10),
-                    TextField(
-                      decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        labelText:
-                        AppLocalizations.of(context)!.authTextFieldSurname,
+                    ListTile(
+                      title: Text(
+                        AppLocalizations.of(context)!.genderFemale,
+                      ),
+                      leading: Radio<Gender>(
+                        value: Gender.female,
+                        groupValue: gender,
+                        onChanged: (Gender? value) {
+                          setState(() {
+                            gender = value!;
+                          });
+                        },
                       ),
                     ),
                     const SizedBox(height: 10),
-                    ElevatedButton(
-                      child:
-                      Text(AppLocalizations.of(context)!.authButtonSignUp),
-                      onPressed: () {},
-                    ),
+                    if (state is AuthLoading)
+                      const Center(child: CircularProgressIndicator())
+                    else
+                      CustomElevatedButton(
+                        label: AppLocalizations.of(context)!.authButtonSignUp,
+                        onPressed: () {
+                          FocusManager.instance.primaryFocus?.unfocus();
+                          if (formKey.currentState!.validate()) {
+                            context.read<AuthBloc>().add(
+                                  RegisterUserEvent(
+                                    phoneNumber:
+                                        phoneNumberController.text.trim(),
+                                    password: passwordController.text.trim(),
+                                    name: nameController.text.trim(),
+                                    surname: surnameController.text.trim(),
+                                    birthDate: birthDateController.text.trim(),
+                                    gender: gender.value,
+                                  ),
+                                );
+                            CoreUtils.showSnackBar(
+                              context,
+                              AppLocalizations.of(context)!.authUserRegistered,
+                            );
+                          }
+                        },
+                      ),
+                    const SizedBox(height: 10),
                     TextButton(
                       child:
-                      Text(AppLocalizations.of(context)!.authButtonSignIn),
+                          Text(AppLocalizations.of(context)!.authButtonSignIn),
                       onPressed: () {
                         Navigator.pushReplacementNamed(
                           context,
@@ -131,4 +150,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
     );
   }
+}
+
+enum Gender {
+  male,
+  female;
+
+  const Gender();
+
+  bool get value => this == Gender.male;
 }

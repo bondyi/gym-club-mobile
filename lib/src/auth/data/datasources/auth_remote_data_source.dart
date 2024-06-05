@@ -34,9 +34,14 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     required String password,
   }) async {
     try {
+      final body = jsonEncode(
+        {'PhoneNumber': phoneNumber, 'Password': password},
+      );
+
       final response = await _client.post(
-        Uri.https(baseUrl, loginUserEndpoint),
-        body: jsonEncode({'PhoneNumber': phoneNumber, 'Password': password}),
+        Uri.http(baseUrl, loginUserEndpoint),
+        headers: requestHeaders,
+        body: body,
       );
 
       if (response.statusCode != 200 && response.statusCode != 201) {
@@ -58,7 +63,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<TokenPairModel> refreshTokens({required String refreshToken}) async {
     try {
       final response = await _client.post(
-        Uri.https(baseUrl, refreshTokensEndpoint),
+        Uri.http(baseUrl, refreshTokensEndpoint),
+        headers: requestHeaders,
         body: jsonEncode({'RefreshToken': refreshToken}),
       );
 
@@ -88,7 +94,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }) async {
     try {
       final response = await _client.post(
-        Uri.https(baseUrl, registerUserEndpoint),
+        Uri.http(baseUrl, registerUserEndpoint),
+        headers: requestHeaders,
         body: jsonEncode({
           'UserRole': 'client',
           'PhoneNumber': phoneNumber,
