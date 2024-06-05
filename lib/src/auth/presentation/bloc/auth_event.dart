@@ -39,7 +39,7 @@ class LoginUserEvent extends AuthEvent {
   final String password;
 
   @override
-  List<Object?> get props => [phoneNumber, password];
+  List<String> get props => [phoneNumber, password];
 }
 
 class RefreshTokensEvent extends AuthEvent {

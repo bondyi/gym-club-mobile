@@ -5,5 +5,18 @@
   "onBoardingDescriptionSecond": "Подберите для себя подходящую программу тренировок и отслеживайте её прогресс.",
   "onBoardingTitleThird": "Занятия с тренерами.",
   "onBoardingDescriptionThird": "Записывайтесь на групповые занятия с тренерами.",
-  "onBoardingButtonGetStarted": "Начать"
+  "onBoardingButtonGetStarted": "Начать",
+
+  "authLoginTitle": "Авторизация",
+  "authRegisterTitle": "Регистрация",
+  "authTextFieldPhoneNumber": "Номер телефона",
+  "authTextFieldPassword": "Пароль",
+  "authTextFieldName": "Имя",
+  "authTextFieldSurname": "Фамилия",
+  "authTextFieldDateOfBirth": "Дата рождения",
+  "authTextFieldGender": "Пол",
+  "authGenderMale": "Мужской",
+  "authGenderFemale": "Женский",
+  "authButtonSignIn": "Войти",
+  "authButtonSignUp": "Зарегистрироваться"
 }

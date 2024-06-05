@@ -5,5 +5,18 @@
   "onBoardingDescriptionSecond": "Choose a suitable training program for yourself and track its progress.",
   "onBoardingTitleThird": "Classes with trainers.",
   "onBoardingDescriptionThird": "Sign up for group classes with trainers.",
-  "onBoardingButtonGetStarted": "Get started"
+  "onBoardingButtonGetStarted": "Get started",
+
+  "authLoginTitle": "Login",
+  "authRegisterTitle": "Register",
+  "authTextFieldPhoneNumber": "Phone number",
+  "authTextFieldPassword": "Password",
+  "authTextFieldName": "Name",
+  "authTextFieldSurname": "Surname",
+  "authTextFieldDateOfBirth": "Date of birth",
+  "authTextFieldGender": "Gender",
+  "authGenderMale": "Male",
+  "authGenderFemale": "Female",
+  "authButtonSignIn": "Sign in",
+  "authButtonSignUp": "Sign up"
 }

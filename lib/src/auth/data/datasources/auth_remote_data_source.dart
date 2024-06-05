@@ -23,10 +23,6 @@ abstract class AuthRemoteDataSource {
   Future<TokenPairModel> refreshTokens({required String refreshToken});
 }
 
-const registerUserEndpoint = '/api/Auth/register';
-const loginUserEndpoint = '/api/Auth/login';
-const refreshTokensEndpoint = '/api/Auth/refresh';
-
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   const AuthRemoteDataSourceImpl(this._client);
 

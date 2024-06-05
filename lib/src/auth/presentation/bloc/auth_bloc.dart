@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:gym_club_mobile/src/auth/domain/entities/token_pair.dart';
-import 'package:gym_club_mobile/src/auth/domain/entities/user.dart';
 import 'package:gym_club_mobile/src/auth/domain/usecases/login_user.dart';
 import 'package:gym_club_mobile/src/auth/domain/usecases/refresh_tokens.dart';
 import 'package:gym_club_mobile/src/auth/domain/usecases/register_user.dart';
@@ -19,6 +18,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         _loginUser = loginUser,
         _refreshTokens = refreshTokens,
         super(const AuthInitial()) {
+    on<AuthEvent>((event, emit) {
+      emit(const AuthLoading());
+    });
     on<RegisterUserEvent>(_registerUserHandler);
     on<LoginUserEvent>(_loginUserHandler);
     on<RefreshTokensEvent>(_refreshTokensHandler);
@@ -32,7 +34,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     RegisterUserEvent event,
     Emitter<AuthState> emit,
   ) async {
-    emit(const RegisteringUser());
+    emit(const AuthLoading());
 
     final result = await _registerUser(
       RegisterUserParams(
@@ -55,7 +57,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     LoginUserEvent event,
     Emitter<AuthState> emit,
   ) async {
-    emit(const AuthenticatingUser());
+    emit(const AuthLoading());
 
     final result = await _loginUser(
       LoginUserParams(
@@ -66,7 +68,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     result.fold(
       (failure) => emit(AuthError(failure.errorMessage)),
-      (tokenPair) => emit(UserAuthenticated(tokenPair)),
+      (tokenPair) => emit(UserLoggedIn(tokenPair)),
     );
   }
 
@@ -74,8 +76,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     RefreshTokensEvent event,
     Emitter<AuthState> emit,
   ) async {
-    emit(const RefreshingTokens());
-
     final result = await _refreshTokens(
       RefreshTokensParams(
         refreshToken: event.refreshToken,

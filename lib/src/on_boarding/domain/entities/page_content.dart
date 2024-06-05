@@ -17,7 +17,8 @@ class PageContent extends Equatable {
   PageContent.second(BuildContext context)
       : this(
           title: AppLocalizations.of(context)!.onBoardingTitleSecond,
-          description: AppLocalizations.of(context)!.onBoardingDescriptionSecond,
+          description:
+              AppLocalizations.of(context)!.onBoardingDescriptionSecond,
         );
 
   PageContent.third(BuildContext context)
