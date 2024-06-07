@@ -4,7 +4,6 @@ import 'package:gym_club_mobile/core/common/views/page_under_construction.dart';
 import 'package:gym_club_mobile/core/extensions/context_extension.dart';
 import 'package:gym_club_mobile/core/services/injection_container.dart';
 import 'package:gym_club_mobile/core/utils/constants.dart';
-import 'package:gym_club_mobile/src/auth/data/models/token_pair_model.dart';
 import 'package:gym_club_mobile/src/auth/presentation/bloc/auth_bloc.dart';
 import 'package:gym_club_mobile/src/auth/presentation/views/login_screen.dart';
 import 'package:gym_club_mobile/src/auth/presentation/views/register_screen.dart';

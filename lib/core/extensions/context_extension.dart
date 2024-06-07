@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gym_club_mobile/core/common/app/providers/token_pair_provider.dart';
-import 'package:gym_club_mobile/src/auth/domain/entities/token_pair.dart';
+import 'package:gym_club_mobile/core/common/app/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 
 extension ContextExtension on BuildContext {
@@ -13,7 +12,7 @@ extension ContextExtension on BuildContext {
   double get width => size.width;
   double get height => size.height;
 
-  TokenPairProvider get tokenPairProvider => read<TokenPairProvider>();
+  UserProvider get userProvider => read<UserProvider>();
 
-  TokenPair? get currentTokenPair => tokenPairProvider.tokenPair;
+  String? get accessToken => userProvider.accessToken;
 }

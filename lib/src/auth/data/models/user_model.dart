@@ -16,26 +16,26 @@ class UserModel extends User {
 
   UserModel.fromMap(DataMap map)
       : this(
-          userId: map['UserId'] as int,
-          userRole: map['UserRole'] as String,
-          phoneNumber: map['PhoneNumber'] as String,
-          name: map['Name'] as String,
-          surname: map['Surname'] as String,
-          birthDate: map['BirthDate'] as String,
-          gender: map['Gender'] as bool,
+          userId: map['userId'] as int,
+          userRole: map['userRole'] as String,
+          phoneNumber: map['phoneNumber'] as String,
+          name: map['name'] as String,
+          surname: map['surname'] as String,
+          birthDate: map['birthDate'] as String,
+          gender: map['gender'] as bool,
         );
 
   factory UserModel.fromJson(String source) =>
       UserModel.fromMap(jsonDecode(source) as DataMap);
 
   DataMap toMap() => {
-        'UserId': userId,
-        'UserRole': userRole,
-        'PhoneNumber': phoneNumber,
-        'Name': name,
-        'Surname': surname,
-        'BirthDate': birthDate,
-        'Gender': gender,
+        'userId': userId,
+        'userRole': userRole,
+        'phoneNumber': phoneNumber,
+        'name': name,
+        'surname': surname,
+        'birthDate': birthDate,
+        'gender': gender,
       };
 
   String toJson() => jsonEncode(toMap());

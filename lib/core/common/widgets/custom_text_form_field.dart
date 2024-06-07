@@ -40,8 +40,8 @@ class CustomTextFormField extends StatelessWidget {
           ? validator
           : (value) {
               if (value == null || value.isEmpty) {
-                return AppLocalizations.of(context)
-                    !.textFormFieldValidatorMessage;
+                return AppLocalizations.of(context)!
+                    .textFormFieldValidatorRequired;
               }
               return validator?.call(value);
             },
@@ -53,24 +53,28 @@ class CustomTextFormField extends StatelessWidget {
       readOnly: readOnly,
       onTap: onTap,
       decoration: InputDecoration(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(40),
-        ),
+        border: const OutlineInputBorder(),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(40),
-          borderSide: const BorderSide(color: Colors.grey),
+          borderSide: BorderSide(color: context.theme.unselectedWidgetColor),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(40),
-          borderSide: BorderSide(color: context.theme.primaryColor),
+          borderSide:
+              BorderSide(color: context.theme.buttonTheme.colorScheme!.primary),
         ),
         contentPadding: const EdgeInsets.symmetric(horizontal: 20),
         filled: filled,
-        fillColor: fillColor,
+        fillColor: context.theme.primaryColor,
         suffixIcon: suffixIcon,
+        suffixIconColor: context.theme.buttonTheme.colorScheme!.primary,
         hintText: hintText,
         hintStyle: hintStyle ??
-            const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+            TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+              color: context.theme.hintColor,
+            ),
       ),
     );
   }

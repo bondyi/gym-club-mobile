@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:gym_club_mobile/core/errors/exceptions.dart';
 import 'package:gym_club_mobile/core/utils/constants.dart';
@@ -51,7 +52,12 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         );
       }
 
-      return jsonDecode(response.body) as TokenPairModel;
+      return TokenPairModel.fromJson(response.body);
+    } on SocketException {
+      throw const ServerException(
+        message: 'The server is not responding, try again later.',
+        statusCode: 521,
+      );
     } on ServerException {
       rethrow;
     } catch (e) {
@@ -62,11 +68,12 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<TokenPairModel> refreshTokens({required String refreshToken}) async {
     try {
-      final response = await _client.post(
-        Uri.http(baseUrl, refreshTokensEndpoint),
-        headers: requestHeaders,
-        body: jsonEncode({'RefreshToken': refreshToken}),
-      );
+      final response = await _client
+          .post(
+            Uri.http(baseUrl, refreshTokensEndpoint),
+            headers: requestHeaders,
+            body: jsonEncode({'RefreshToken': refreshToken}),
+          );
 
       if (response.statusCode != 200 && response.statusCode != 201) {
         throw ServerException(
@@ -76,6 +83,11 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       }
 
       return jsonDecode(response.body) as TokenPairModel;
+    } on SocketException {
+      throw const ServerException(
+        message: 'The server is not responding, try again later.',
+        statusCode: 521,
+      );
     } on ServerException {
       rethrow;
     } catch (e) {
@@ -93,19 +105,20 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     required bool gender,
   }) async {
     try {
-      final response = await _client.post(
-        Uri.http(baseUrl, registerUserEndpoint),
-        headers: requestHeaders,
-        body: jsonEncode({
-          'UserRole': 'client',
-          'PhoneNumber': phoneNumber,
-          'Password': password,
-          'Name': name,
-          'Surname': surname,
-          'BirthDate': birthDate,
-          'Gender': gender,
-        }),
-      );
+      final response = await _client
+          .post(
+            Uri.http(baseUrl, registerUserEndpoint),
+            headers: requestHeaders,
+            body: jsonEncode({
+              'UserRole': 'client',
+              'PhoneNumber': phoneNumber,
+              'Password': password,
+              'Name': name,
+              'Surname': surname,
+              'BirthDate': birthDate,
+              'Gender': gender,
+            }),
+          );
 
       if (response.statusCode != 200 && response.statusCode != 201) {
         throw ServerException(
@@ -113,6 +126,11 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
           statusCode: response.statusCode,
         );
       }
+    } on SocketException {
+      throw const ServerException(
+        message: 'The server is not responding, try again later.',
+        statusCode: 521,
+      );
     } on ServerException {
       rethrow;
     } catch (e) {

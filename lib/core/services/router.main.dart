@@ -17,11 +17,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
           final refreshToken = preferences.getString(spRefreshTokenKey);
 
           if (accessToken != null && refreshToken != null) {
-            final tokenPair = TokenPairModel(
-              accessToken: accessToken,
-              refreshToken: refreshToken,
-            );
-            context.tokenPairProvider.initTokenPair(tokenPair);
+            context.userProvider.initUser(accessToken);
             return const Dashboard();
           }
           return BlocProvider(

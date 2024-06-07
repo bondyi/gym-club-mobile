@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:gym_club_mobile/core/common/app/providers/token_pair_provider.dart';
+import 'package:gym_club_mobile/core/common/app/providers/user_provider.dart';
 import 'package:gym_club_mobile/core/services/injection_container.dart';
 import 'package:gym_club_mobile/core/services/router.dart';
 import 'package:provider/provider.dart';
@@ -17,19 +17,12 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => TokenPairProvider(),
+      create: (_) => UserProvider(),
       child: MaterialApp(
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
-        theme: ThemeData(
-          useMaterial3: true,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.cyanAccent),
-          scaffoldBackgroundColor: Colors.white,
-          appBarTheme: const AppBarTheme(
-            color: Colors.transparent,
-          ),
-        ),
+        theme: ThemeData.light(useMaterial3: true),
+        darkTheme: ThemeData.dark(useMaterial3: true),
         onGenerateRoute: generateRoute,
       ),
     );

@@ -19,9 +19,10 @@ class CustomElevatedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor:
-            buttonColor ?? context.theme.dialogBackgroundColor,
-        foregroundColor: labelColor ?? context.theme.primaryColor,
+        backgroundColor: buttonColor ??
+            context.theme.elevatedButtonTheme.style?.backgroundColor as Color?,
+        foregroundColor: labelColor ??
+            context.theme.elevatedButtonTheme.style?.foregroundColor as Color?,
         minimumSize: const Size(double.maxFinite, 50),
       ),
       onPressed: onPressed,

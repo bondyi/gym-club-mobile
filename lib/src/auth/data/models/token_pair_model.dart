@@ -11,14 +11,14 @@ class TokenPairModel extends TokenPair {
 
   TokenPairModel.fromMap(DataMap map)
       : this(
-          accessToken: map['AccessToken'] as String,
-          refreshToken: map['RefreshToken'] as String,
+          accessToken: map['accessToken'] as String,
+          refreshToken: map['refreshToken'] as String,
         );
 
   factory TokenPairModel.fromJson(String source) =>
       TokenPairModel.fromMap(jsonDecode(source) as DataMap);
 
-  DataMap toMap() => {'AccessToken': accessToken, 'RefreshToken': refreshToken};
+  DataMap toMap() => {'accessToken': accessToken, 'refreshToken': refreshToken};
 
   String toJson() => jsonEncode(toMap());
 

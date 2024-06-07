@@ -3,10 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:gym_club_mobile/core/common/widgets/background.dart';
 import 'package:gym_club_mobile/core/common/widgets/custom_elevated_button.dart';
+import 'package:gym_club_mobile/core/extensions/context_extension.dart';
 import 'package:gym_club_mobile/core/utils/core_utils.dart';
 import 'package:gym_club_mobile/src/auth/presentation/bloc/auth_bloc.dart';
 import 'package:gym_club_mobile/src/auth/presentation/views/login_screen.dart';
 import 'package:gym_club_mobile/src/auth/presentation/widgets/register_form.dart';
+import 'package:gym_club_mobile/src/dashboard/presentation/views/dashboard.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -20,6 +22,7 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   final phoneNumberController = TextEditingController();
   final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
   final nameController = TextEditingController();
   final surnameController = TextEditingController();
   final birthDateController = TextEditingController();
@@ -30,6 +33,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   void dispose() {
     phoneNumberController.dispose();
     passwordController.dispose();
+    confirmPasswordController.dispose();
     nameController.dispose();
     surnameController.dispose();
     birthDateController.dispose();
@@ -39,13 +43,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: context.theme.scaffoldBackgroundColor,
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (_, state) {
           if (state is AuthError) {
             CoreUtils.showSnackBar(context, state.message);
           } else if (state is UserRegistered) {
-            Navigator.pushReplacementNamed(context, LoginScreen.routeName);
+            CoreUtils.showSnackBar(
+              context,
+              AppLocalizations.of(context)!.authUserRegistered,
+            );
+            context.read<AuthBloc>().add(
+                  LoginUserEvent(
+                    phoneNumber: phoneNumberController.text.trim(),
+                    password: passwordController.text.trim(),
+                  ),
+                );
+          } else if (state is UserLoggedIn) {
+            context.userProvider.initUser(state.tokenPair.accessToken);
+            Navigator.pushReplacementNamed(context, Dashboard.routeName);
           }
         },
         builder: (context, state) {
@@ -65,43 +81,52 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 40),
                     RegisterForm(
                       phoneNumberController: phoneNumberController,
                       passwordController: passwordController,
+                      confirmPasswordController: confirmPasswordController,
                       nameController: nameController,
                       surnameController: surnameController,
                       birthDateController: birthDateController,
                       formKey: formKey,
                     ),
                     const SizedBox(height: 10),
-                    ListTile(
-                      title: Text(
-                        AppLocalizations.of(context)!.genderMale,
-                      ),
-                      leading: Radio<Gender>(
-                        value: Gender.male,
-                        groupValue: gender,
-                        onChanged: (Gender? value) {
-                          setState(() {
-                            gender = value!;
-                          });
-                        },
-                      ),
-                    ),
-                    ListTile(
-                      title: Text(
-                        AppLocalizations.of(context)!.genderFemale,
-                      ),
-                      leading: Radio<Gender>(
-                        value: Gender.female,
-                        groupValue: gender,
-                        onChanged: (Gender? value) {
-                          setState(() {
-                            gender = value!;
-                          });
-                        },
-                      ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ListTile(
+                            title: Text(
+                              AppLocalizations.of(context)!.genderMale,
+                            ),
+                            leading: Radio<Gender>(
+                              value: Gender.male,
+                              groupValue: gender,
+                              onChanged: (Gender? value) {
+                                setState(() {
+                                  gender = value!;
+                                });
+                              },
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: ListTile(
+                            title: Text(
+                              AppLocalizations.of(context)!.genderFemale,
+                            ),
+                            leading: Radio<Gender>(
+                              value: Gender.female,
+                              groupValue: gender,
+                              onChanged: (Gender? value) {
+                                setState(() {
+                                  gender = value!;
+                                });
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 10),
                     if (state is AuthLoading)
@@ -123,10 +148,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     gender: gender.value,
                                   ),
                                 );
-                            CoreUtils.showSnackBar(
-                              context,
-                              AppLocalizations.of(context)!.authUserRegistered,
-                            );
                           }
                         },
                       ),

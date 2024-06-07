@@ -10,16 +10,10 @@ class CoreUtils {
       ..showSnackBar(
         SnackBar(
           content: Center(
-            child: Text(
-              message,
-              style: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            child: Text(message),
           ),
           behavior: SnackBarBehavior.floating,
-          backgroundColor: context.theme.primaryColor,
+          backgroundColor: context.theme.snackBarTheme.backgroundColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),

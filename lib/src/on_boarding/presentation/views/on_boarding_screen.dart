@@ -35,7 +35,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     const pageCount = 3;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: context.theme.scaffoldBackgroundColor,
       body: Background(
         child: BlocConsumer<OnBoardingCubit, OnBoardingState>(
           listener: (context, state) {
@@ -70,8 +70,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   child: PageViewDotIndicator(
                     currentItem: selectedPage,
                     count: pageCount,
-                    unselectedColor: Colors.black26,
-                    selectedColor: context.theme.primaryColor,
+                    unselectedColor: context.theme.unselectedWidgetColor,
+                    selectedColor:
+                        context.theme.buttonTheme.colorScheme!.primary,
                     duration: const Duration(milliseconds: 200),
                     onItemClicked: (index) {
                       pageController.animateToPage(

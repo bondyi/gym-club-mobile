@@ -11,15 +11,17 @@
   "authRegisterTitle": "Регистрация",
   "phoneNumber": "Номер телефона",
   "password": "Пароль",
+  "confirmPassword": "Подтверждение пароля",
   "name": "Имя",
   "surname": "Фамилия",
   "birthDate": "Дата рождения",
   "gender": "Пол",
-  "genderMale": "Мужской",
-  "genderFemale": "Женский",
+  "genderMale": "Мужчина",
+  "genderFemale": "Женщина",
   "authButtonSignIn": "Войти",
   "authButtonSignUp": "Зарегистрироваться",
-  "authUserRegistered": "Регистрация успешна.",
+  "authUserRegistered": "Регистрация прошла успешно!",
 
-  "textFormFieldValidatorMessage": "Это поле обязательно к заполнению"
+  "textFormFieldValidatorRequired": "Это поле обязательно к заполнению",
+  "textFormFieldValidatorPasswordMismatch": "Пароли не совпадают"
 }

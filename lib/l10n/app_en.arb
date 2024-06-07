@@ -11,6 +11,7 @@
   "authRegisterTitle": "Register",
   "phoneNumber": "Phone number",
   "password": "Password",
+  "confirmPassword": "Confirm password",
   "name": "Name",
   "surname": "Surname",
   "birthDate": "Date of birth",
@@ -21,5 +22,6 @@
   "authButtonSignUp": "Sign up",
   "authUserRegistered": "Registration successful!",
 
-  "textFormFieldValidatorMessage": "This field is required"
+  "textFormFieldValidatorRequired": "This field is required",
+  "textFormFieldValidatorPasswordMismatch": "Password do not match"
 }

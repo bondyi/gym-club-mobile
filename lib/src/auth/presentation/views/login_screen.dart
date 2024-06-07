@@ -34,13 +34,13 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: context.theme.scaffoldBackgroundColor,
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (_, state) {
           if (state is AuthError) {
             CoreUtils.showSnackBar(context, state.message);
           } else if (state is UserLoggedIn) {
-            context.tokenPairProvider.initTokenPair(state.tokenPair);
+            context.userProvider.initUser(state.tokenPair.accessToken);
             Navigator.pushReplacementNamed(context, Dashboard.routeName);
           }
         },
@@ -61,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 40),
                     LoginForm(
                       phoneNumberController: phoneNumberController,
                       passwordController: passwordController,

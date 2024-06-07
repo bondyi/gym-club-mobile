@@ -22,3 +22,15 @@ class User extends Equatable {
   @override
   List<Object?> get props => [userId];
 }
+
+enum UserRole {
+  admin(role: 'admin'),
+  trainer(role: 'trainer'),
+  client(role: 'client');
+
+  const UserRole({
+    required this.role,
+  });
+
+  final String role;
+}

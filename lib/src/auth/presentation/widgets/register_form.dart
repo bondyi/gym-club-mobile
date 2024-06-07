@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:gym_club_mobile/core/common/widgets/custom_text_form_field.dart';
-import 'package:gym_club_mobile/core/extensions/context_extension.dart';
 
 class RegisterForm extends StatefulWidget {
   const RegisterForm({
     required this.phoneNumberController,
     required this.passwordController,
+    required this.confirmPasswordController,
     required this.nameController,
     required this.surnameController,
     required this.birthDateController,
@@ -16,6 +16,7 @@ class RegisterForm extends StatefulWidget {
 
   final TextEditingController phoneNumberController;
   final TextEditingController passwordController;
+  final TextEditingController confirmPasswordController;
   final TextEditingController nameController;
   final TextEditingController surnameController;
   final TextEditingController birthDateController;
@@ -27,6 +28,7 @@ class RegisterForm extends StatefulWidget {
 
 class _RegisterFormState extends State<RegisterForm> {
   bool obscurePassword = true;
+  bool obscureConfirmPassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -51,9 +53,32 @@ class _RegisterFormState extends State<RegisterForm> {
               }),
               icon: Icon(
                 obscurePassword ? Icons.visibility : Icons.visibility_off,
-                color: context.theme.primaryColor,
               ),
             ),
+          ),
+          const SizedBox(height: 10),
+          CustomTextFormField(
+            controller: widget.confirmPasswordController,
+            hintText: AppLocalizations.of(context)!.confirmPassword,
+            obscureText: obscureConfirmPassword,
+            keyboardType: TextInputType.visiblePassword,
+            suffixIcon: IconButton(
+              onPressed: () => setState(() {
+                obscureConfirmPassword = !obscureConfirmPassword;
+              }),
+              icon: Icon(
+                obscureConfirmPassword
+                    ? Icons.visibility
+                    : Icons.visibility_off,
+              ),
+            ),
+            validator: (value) {
+              if (value != widget.passwordController.text) {
+                return AppLocalizations.of(context)!
+                    .textFormFieldValidatorPasswordMismatch;
+              }
+              return null;
+            },
           ),
           const SizedBox(height: 10),
           CustomTextFormField(
@@ -86,7 +111,7 @@ class _RegisterFormState extends State<RegisterForm> {
     final pickedDate = await showDatePicker(
       context: context,
       firstDate: DateTime(currentDate.year - 100),
-      lastDate: DateTime(currentDate.year + 1),
+      lastDate: DateTime(currentDate.year - 14),
     );
 
     if (pickedDate != null) {
