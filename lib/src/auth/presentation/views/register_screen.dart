@@ -49,10 +49,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
           if (state is AuthError) {
             CoreUtils.showSnackBar(context, state.message);
           } else if (state is UserRegistered) {
-            CoreUtils.showSnackBar(
-              context,
-              AppLocalizations.of(context)!.authUserRegistered,
-            );
             context.read<AuthBloc>().add(
                   LoginUserEvent(
                     phoneNumber: phoneNumberController.text.trim(),
@@ -60,6 +56,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 );
           } else if (state is UserLoggedIn) {
+            context.read<AuthBloc>().add(
+              SetTokensEvent(
+                accessToken: state.tokenPair.accessToken,
+                refreshToken: state.tokenPair.refreshToken,
+              ),
+            );
             context.userProvider.initUser(state.tokenPair.accessToken);
             Navigator.pushReplacementNamed(context, Dashboard.routeName);
           }

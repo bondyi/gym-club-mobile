@@ -52,3 +52,27 @@ class RefreshTokensEvent extends AuthEvent {
   @override
   List<Object?> get props => [refreshToken];
 }
+
+class GetTokensEvent extends AuthEvent {
+  const GetTokensEvent({
+    required this.tokenPair,
+  });
+
+  final TokenPair tokenPair;
+
+  @override
+  List<TokenPair> get props => [tokenPair];
+}
+
+class SetTokensEvent extends AuthEvent {
+  const SetTokensEvent({
+    required this.accessToken,
+    required this.refreshToken,
+  });
+
+  final String accessToken;
+  final String refreshToken;
+
+  @override
+  List<Object?> get props => [accessToken, refreshToken];
+}

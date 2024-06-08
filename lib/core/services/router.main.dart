@@ -14,9 +14,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
             );
           }
           final accessToken = preferences.getString(spAccessTokenKey);
-          final refreshToken = preferences.getString(spRefreshTokenKey);
 
-          if (accessToken != null && refreshToken != null) {
+          if (accessToken != null) {
             context.userProvider.initUser(accessToken);
             return const Dashboard();
           }

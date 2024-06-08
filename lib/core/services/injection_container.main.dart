@@ -35,7 +35,13 @@ Future<void> _initOnBoarding() async {
 Future<void> _initAuth() async {
   sl
     ..registerFactory(
-      () => AuthBloc(registerUser: sl(), loginUser: sl(), refreshTokens: sl()),
+      () => AuthBloc(
+        registerUser: sl(),
+        loginUser: sl(),
+        refreshTokens: sl(),
+        getTokens: sl(),
+        setTokens: sl(),
+      ),
     )
     ..registerLazySingleton(
       () => RegisterUser(sl()),
@@ -44,6 +50,8 @@ Future<void> _initAuth() async {
       () => LoginUser(sl()),
     )
     ..registerLazySingleton(() => RefreshTokens(sl()))
+    ..registerLazySingleton(() => GetTokens(sl()))
+    ..registerLazySingleton(() => SetTokens(sl()))
     ..registerLazySingleton<AuthRepository>(
       () => AuthRepositoryImpl(sl(), sl()),
     )

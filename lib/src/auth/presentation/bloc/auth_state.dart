@@ -45,3 +45,16 @@ class TokensRefreshed extends AuthState {
   @override
   List<TokenPair> get props => [tokenPair];
 }
+
+class TokensReceivedLocal extends AuthState {
+  const TokensReceivedLocal(this.tokenPair);
+
+  final TokenPair tokenPair;
+
+  @override
+  List<TokenPair> get props => [tokenPair];
+}
+
+class TokensSavedLocal extends AuthState {
+  const TokensSavedLocal();
+}

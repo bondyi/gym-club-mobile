@@ -10,8 +10,14 @@ class LoginUser extends UsecaseWithParams<TokenPair, LoginUserParams> {
   final AuthRepository _repository;
 
   @override
-  ResultFuture<TokenPair> call(LoginUserParams params) async => _repository
-      .loginUser(phoneNumber: params.phoneNumber, password: params.password);
+  ResultFuture<TokenPair> call(LoginUserParams params) async {
+    final result = await _repository.loginUser(
+      phoneNumber: params.phoneNumber,
+      password: params.password,
+    );
+
+    return result;
+  }
 }
 
 class LoginUserParams extends Equatable {
