@@ -5,6 +5,7 @@ import 'package:gym_club_mobile/core/common/widgets/background.dart';
 import 'package:gym_club_mobile/core/common/widgets/custom_elevated_button.dart';
 import 'package:gym_club_mobile/core/extensions/context_extension.dart';
 import 'package:gym_club_mobile/core/utils/core_utils.dart';
+import 'package:gym_club_mobile/src/auth/domain/entities/user.dart';
 import 'package:gym_club_mobile/src/auth/presentation/bloc/auth_bloc.dart';
 import 'package:gym_club_mobile/src/auth/presentation/views/login_screen.dart';
 import 'package:gym_club_mobile/src/auth/presentation/widgets/register_form.dart';
@@ -173,13 +174,4 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
     );
   }
-}
-
-enum Gender {
-  male,
-  female;
-
-  const Gender();
-
-  bool get value => this == Gender.male;
 }

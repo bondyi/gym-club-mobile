@@ -34,3 +34,12 @@ enum UserRole {
 
   final String role;
 }
+
+enum Gender {
+  male,
+  female;
+
+  const Gender();
+
+  bool get value => this == Gender.male;
+}
