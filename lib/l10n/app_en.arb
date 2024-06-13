@@ -23,5 +23,16 @@
   "authUserRegistered": "Registration successful!",
 
   "textFormFieldValidatorRequired": "This field is required",
-  "textFormFieldValidatorPasswordMismatch": "Password do not match"
+  "textFormFieldValidatorPasswordMismatch": "Password do not match",
+
+  "dashboardTabItemTitleHome": "Home",
+  "dashboardTabItemTitleWorkout": "Workouts",
+  "dashboardTabItemTitleLesson": "Lessons",
+  "dashboardTabItemTitleShop": "Shop",
+  "dashboardTabItemTitleProfile": "Profile",
+
+  "profilePopupItemTitleEdit": "Edit",
+  "profilePopupItemTitleLogout": "Log out",
+  "editButtonSave": "Save",
+  "buttonDelete": "Delete"
 }

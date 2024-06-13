@@ -1,28 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:gym_club_mobile/src/profile/data/models/user_model.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
 class UserProvider extends ChangeNotifier {
+  int? _id;
   String? _accessToken;
-  int? _userId;
-  String? _userRole;
 
+  UserModel? _user;
+
+  int? get userId => _id;
   String? get accessToken => _accessToken;
-  int? get userId => _userId;
-  String? get userRole => _userRole;
 
-  void initUser(String? accessToken) {
-    if (accessToken != null && _accessToken != accessToken) {
-      _accessToken = accessToken;
+  UserModel? get user => _user;
 
-      final decodedToken = JwtDecoder.decode(accessToken);
-      _userId = int.parse(decodedToken['nameid'].toString());
-      _userRole = decodedToken['role'].toString();
+  set user(UserModel? user) {
+    if (user != null && _user != user) {
+      _user = user;
+
+      Future.delayed(Duration.zero, notifyListeners);
     }
   }
 
-  set accessToken(String? accessToken) {
-    if (_accessToken != accessToken) {
+  void initAuth(String? accessToken) {
+    if (_accessToken != accessToken && accessToken != null) {
       _accessToken = accessToken;
+
+      final decodedToken = JwtDecoder.decode(accessToken);
+      _id = int.parse(decodedToken['nameid'].toString());
+
+      Future.delayed(Duration.zero, notifyListeners);
+    }
+  }
+
+  void initUser(UserModel? user) {
+    if (user != null && _user != user) {
+      _user = user;
+
       Future.delayed(Duration.zero, notifyListeners);
     }
   }

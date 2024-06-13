@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:gym_club_mobile/core/utils/typedef.dart';
-import 'package:gym_club_mobile/src/auth/domain/entities/user.dart';
+import 'package:gym_club_mobile/src/profile/domain/entities/user.dart';
 
 class UserModel extends User {
   const UserModel({

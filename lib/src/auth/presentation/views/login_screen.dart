@@ -46,64 +46,62 @@ class _LoginScreenState extends State<LoginScreen> {
                     refreshToken: state.tokenPair.refreshToken,
                   ),
                 );
-            context.userProvider.initUser(state.tokenPair.accessToken);
+            context.userProvider.initAuth(state.tokenPair.accessToken);
             Navigator.pushReplacementNamed(context, Dashboard.routeName);
           }
         },
         builder: (context, state) {
           return Background(
-            child: SafeArea(
-              child: Center(
-                child: ListView(
-                  shrinkWrap: true,
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  children: [
-                    Center(
-                      child: Text(
-                        AppLocalizations.of(context)!.authLoginTitle,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 32,
-                        ),
+            child: Center(
+              child: ListView(
+                shrinkWrap: true,
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                children: [
+                  Center(
+                    child: Text(
+                      AppLocalizations.of(context)!.authLoginTitle,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 32,
                       ),
                     ),
-                    const SizedBox(height: 40),
-                    LoginForm(
-                      phoneNumberController: phoneNumberController,
-                      passwordController: passwordController,
-                      formKey: formKey,
-                    ),
-                    const SizedBox(height: 10),
-                    if (state is AuthLoading)
-                      const Center(child: CircularProgressIndicator())
-                    else
-                      CustomElevatedButton(
-                        label: AppLocalizations.of(context)!.authButtonSignIn,
-                        onPressed: () {
-                          FocusManager.instance.primaryFocus?.unfocus();
-                          if (formKey.currentState!.validate()) {
-                            context.read<AuthBloc>().add(
-                                  LoginUserEvent(
-                                    phoneNumber:
-                                        phoneNumberController.text.trim(),
-                                    password: passwordController.text.trim(),
-                                  ),
-                                );
-                          }
-                        },
-                      ),
-                    TextButton(
-                      child:
-                          Text(AppLocalizations.of(context)!.authButtonSignUp),
+                  ),
+                  const SizedBox(height: 40),
+                  LoginForm(
+                    phoneNumberController: phoneNumberController,
+                    passwordController: passwordController,
+                    formKey: formKey,
+                  ),
+                  const SizedBox(height: 10),
+                  if (state is AuthLoading)
+                    const Center(child: CircularProgressIndicator())
+                  else
+                    CustomElevatedButton(
+                      label: AppLocalizations.of(context)!.authButtonSignIn,
                       onPressed: () {
-                        Navigator.pushReplacementNamed(
-                          context,
-                          RegisterScreen.routeName,
-                        );
+                        FocusManager.instance.primaryFocus?.unfocus();
+                        if (formKey.currentState!.validate()) {
+                          context.read<AuthBloc>().add(
+                                LoginUserEvent(
+                                  phoneNumber:
+                                      phoneNumberController.text.trim(),
+                                  password: passwordController.text.trim(),
+                                ),
+                              );
+                        }
                       },
                     ),
-                  ],
-                ),
+                  TextButton(
+                    child:
+                        Text(AppLocalizations.of(context)!.authButtonSignUp),
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(
+                        context,
+                        RegisterScreen.routeName,
+                      );
+                    },
+                  ),
+                ],
               ),
             ),
           );

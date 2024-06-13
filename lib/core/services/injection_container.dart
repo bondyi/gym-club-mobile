@@ -15,6 +15,14 @@ import 'package:gym_club_mobile/src/on_boarding/domain/repositories/on_boarding_
 import 'package:gym_club_mobile/src/on_boarding/domain/usecases/cache_first_timer.dart';
 import 'package:gym_club_mobile/src/on_boarding/domain/usecases/check_if_user_is_first_timer.dart';
 import 'package:gym_club_mobile/src/on_boarding/presentation/cubit/on_boarding_cubit.dart';
+import 'package:gym_club_mobile/src/profile/data/datasources/user_remote_data_source.dart';
+import 'package:gym_club_mobile/src/profile/data/repositories/user_repository_impl.dart';
+import 'package:gym_club_mobile/src/profile/domain/repositories/user_repository.dart';
+import 'package:gym_club_mobile/src/profile/domain/usecases/delete_user.dart';
+import 'package:gym_club_mobile/src/profile/domain/usecases/get_user.dart';
+import 'package:gym_club_mobile/src/profile/domain/usecases/logout_user.dart';
+import 'package:gym_club_mobile/src/profile/domain/usecases/put_user.dart';
+import 'package:gym_club_mobile/src/profile/presentation/bloc/user_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 

@@ -23,5 +23,16 @@
   "authUserRegistered": "Регистрация прошла успешно!",
 
   "textFormFieldValidatorRequired": "Это поле обязательно к заполнению",
-  "textFormFieldValidatorPasswordMismatch": "Пароли не совпадают"
+  "textFormFieldValidatorPasswordMismatch": "Пароли не совпадают",
+
+  "dashboardTabItemTitleHome": "Главная",
+  "dashboardTabItemTitleWorkout": "Тренировки",
+  "dashboardTabItemTitleLesson": "Занятия",
+  "dashboardTabItemTitleShop": "Магазин",
+  "dashboardTabItemTitleProfile": "Профиль",
+
+  "profilePopupItemTitleEdit": "Изменить",
+  "profilePopupItemTitleLogout": "Выход",
+  "editButtonSave": "Сохранить",
+  "buttonDelete": "Удалить"
 }

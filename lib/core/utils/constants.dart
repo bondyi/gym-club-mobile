@@ -1,10 +1,12 @@
-const baseUrl = '192.168.100.4:63419';
+const baseUrl = '192.168.100.4:53907';
 
 const spFirstTimerKey = 'first_timer';
 
 const registerUserEndpoint = '/api/Auth/register';
 const loginUserEndpoint = '/api/Auth/login';
 const refreshTokensEndpoint = '/api/Auth/refresh';
+
+const usersEndpoint = '/api/Users';
 
 const requestHeaders = {
   'Content-type': 'application/json',

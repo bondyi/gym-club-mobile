@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gym_club_mobile/core/extensions/context_extension.dart';
+import 'package:intl/find_locale.dart';
 
 class CoreUtils {
   const CoreUtils._();
@@ -21,4 +22,6 @@ class CoreUtils {
         ),
       );
   }
+
+  static Future<String> getLocale() async => findSystemLocale();
 }

@@ -9,6 +9,8 @@ abstract class AuthLocalDataSource {
   });
 
   Future<TokenPairModel> getTokens();
+
+  Future<void> logoutUser();
 }
 
 const kAccessTokenKey = 'accessToken';
@@ -42,6 +44,16 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
     try {
       await _preferences.setString(kAccessTokenKey, accessToken);
       await _preferences.setString(kRefreshTokenKey, refreshToken);
+    } catch (e) {
+      throw CacheException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<void> logoutUser() async {
+    try {
+      await _preferences.remove(kAccessTokenKey);
+      await _preferences.remove(kRefreshTokenKey);
     } catch (e) {
       throw CacheException(message: e.toString());
     }

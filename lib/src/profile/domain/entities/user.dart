@@ -20,7 +20,8 @@ class User extends Equatable {
   final bool gender;
 
   @override
-  List<Object?> get props => [userId];
+  List<Object?> get props =>
+      [userId, userRole, phoneNumber, name, surname, birthDate, gender];
 }
 
 enum UserRole {

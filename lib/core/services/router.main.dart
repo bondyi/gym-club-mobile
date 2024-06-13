@@ -16,7 +16,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
           final accessToken = preferences.getString(spAccessTokenKey);
 
           if (accessToken != null) {
-            context.userProvider.initUser(accessToken);
+            context.userProvider.initAuth(accessToken);
             return const Dashboard();
           }
           return BlocProvider(

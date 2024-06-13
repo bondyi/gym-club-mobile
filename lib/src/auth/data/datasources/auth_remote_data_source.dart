@@ -45,7 +45,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         body: body,
       );
 
-      if (response.statusCode != 200 && response.statusCode != 201) {
+      if (response.statusCode != 200) {
         throw ServerException(
           message: response.body,
           statusCode: response.statusCode,
@@ -75,7 +75,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
             body: jsonEncode({'RefreshToken': refreshToken}),
           );
 
-      if (response.statusCode != 200 && response.statusCode != 201) {
+      if (response.statusCode != 200) {
         throw ServerException(
           message: response.body,
           statusCode: response.statusCode,

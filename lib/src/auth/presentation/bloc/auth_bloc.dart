@@ -8,7 +8,6 @@ import 'package:gym_club_mobile/src/auth/domain/usecases/register_user.dart';
 import 'package:gym_club_mobile/src/auth/domain/usecases/set_tokens.dart';
 
 part 'auth_event.dart';
-
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
@@ -122,8 +121,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
 
     result.fold(
-          (failure) => emit(AuthError(failure.errorMessage)),
-          (tokenPair) => emit(const TokensSavedLocal()),
+      (failure) => emit(AuthError(failure.errorMessage)),
+      (tokenPair) => emit(const TokensSavedLocal()),
     );
   }
 }
