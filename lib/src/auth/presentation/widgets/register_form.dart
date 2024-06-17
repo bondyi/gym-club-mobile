@@ -28,7 +28,6 @@ class RegisterForm extends StatefulWidget {
 
 class _RegisterFormState extends State<RegisterForm> {
   bool obscurePassword = true;
-  bool obscureConfirmPassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -60,18 +59,8 @@ class _RegisterFormState extends State<RegisterForm> {
           CustomTextFormField(
             controller: widget.confirmPasswordController,
             hintText: AppLocalizations.of(context)!.confirmPassword,
-            obscureText: obscureConfirmPassword,
+            obscureText: obscurePassword,
             keyboardType: TextInputType.visiblePassword,
-            suffixIcon: IconButton(
-              onPressed: () => setState(() {
-                obscureConfirmPassword = !obscureConfirmPassword;
-              }),
-              icon: Icon(
-                obscureConfirmPassword
-                    ? Icons.visibility
-                    : Icons.visibility_off,
-              ),
-            ),
             validator: (value) {
               if (value != widget.passwordController.text) {
                 return AppLocalizations.of(context)!

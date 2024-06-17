@@ -9,7 +9,6 @@ sealed class OnBoardingState extends Equatable {
 
 final class OnBoardingInitial extends OnBoardingState {
   const OnBoardingInitial();
-
 }
 
 final class CachingFirstTimer extends OnBoardingState {

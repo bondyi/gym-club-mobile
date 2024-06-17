@@ -22,12 +22,17 @@ class ProfileView extends StatelessWidget {
         if (state is UserError) {
           CoreUtils.showSnackBar(context, state.message);
         } else if (state is UserFetched) {
-          context.userProvider.initUser(state.user as UserModel);
-        } else if (state is UserInfoChanged) {
-          print('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+          if (context.user == null) {
+            context.userProvider.initUser(state.user as UserModel);
+          } else {
+            context.userProvider.user = state.user as UserModel;
+          }
         }
       },
       builder: (context, state) {
+        if (state is UserLoading) {
+          return const LoadingView();
+        }
         return Scaffold(
           appBar: PreferredSize(
             preferredSize: const Size.fromHeight(50),
@@ -40,59 +45,58 @@ class ProfileView extends StatelessWidget {
           body: Background(
             child: ListView(
               children: [
-                if (state is! UserFetched)
-                  const LoadingView()
-                else
-                  Consumer<UserProvider>(
-                    builder: (_, provider, __) {
-                      final user = provider.user;
-                      return Padding(
-                        padding: const EdgeInsets.all(25),
-                        child: Column(
-                          children: [
-                            Align(
-                              alignment: Alignment.centerLeft,
-                              child: Row(
-                                children: [
-                                  Text(
+                Consumer<UserProvider>(
+                  builder: (_, provider, __) {
+                    final user = provider.user;
+                    return Padding(
+                      padding: const EdgeInsets.all(25),
+                      child: Column(
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
                                     style: const TextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 32,
                                     ),
                                     '${user!.name} ${user.surname}',
                                   ),
-                                  Icon(
-                                    user.gender == true
-                                        ? Icons.male
-                                        : Icons.female,
-                                    size: 32,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                user.phoneNumber,
-                                style: const TextStyle(fontSize: 18),
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                DateFormat.yMMMd(
-                                  Localizations.localeOf(context).languageCode,
-                                ).format(
-                                  DateTime.parse(user.birthDate),
                                 ),
-                                style: const TextStyle(fontSize: 18),
-                              ),
+                                Icon(
+                                  user.gender == true
+                                      ? Icons.male
+                                      : Icons.female,
+                                  size: 32,
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
+                          ),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              user.phoneNumber,
+                              style: const TextStyle(fontSize: 18),
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              DateFormat.yMMMd(
+                                Localizations.localeOf(context).languageCode,
+                              ).format(
+                                DateTime.parse(user.birthDate),
+                              ),
+                              style: const TextStyle(fontSize: 18),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
               ],
             ),
           ),

@@ -76,7 +76,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
     result.fold(
           (failure) => emit(UserError(failure.errorMessage)),
-          (_) => emit(const UserDeleted()),
+          (_) => emit(const UserLoggedOut()),
     );
   }
 

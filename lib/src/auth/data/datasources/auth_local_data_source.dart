@@ -1,4 +1,5 @@
 import 'package:gym_club_mobile/core/errors/exceptions.dart';
+import 'package:gym_club_mobile/core/utils/constants.dart';
 import 'package:gym_club_mobile/src/auth/data/models/token_pair_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -13,9 +14,6 @@ abstract class AuthLocalDataSource {
   Future<void> logoutUser();
 }
 
-const kAccessTokenKey = 'accessToken';
-const kRefreshTokenKey = 'refreshToken';
-
 class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   const AuthLocalDataSourceImpl(this._preferences);
 
@@ -24,8 +22,8 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   @override
   Future<TokenPairModel> getTokens() async {
     try {
-      final accessToken = _preferences.getString(kAccessTokenKey);
-      final refreshToken = _preferences.getString(kRefreshTokenKey);
+      final accessToken = _preferences.getString(spAccessTokenKey);
+      final refreshToken = _preferences.getString(spRefreshTokenKey);
 
       return TokenPairModel(
         accessToken: accessToken!,
@@ -42,8 +40,8 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
     required String refreshToken,
   }) async {
     try {
-      await _preferences.setString(kAccessTokenKey, accessToken);
-      await _preferences.setString(kRefreshTokenKey, refreshToken);
+      await _preferences.setString(spAccessTokenKey, accessToken);
+      await _preferences.setString(spRefreshTokenKey, refreshToken);
     } catch (e) {
       throw CacheException(message: e.toString());
     }
@@ -52,8 +50,8 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   @override
   Future<void> logoutUser() async {
     try {
-      await _preferences.remove(kAccessTokenKey);
-      await _preferences.remove(kRefreshTokenKey);
+      await _preferences.remove(spAccessTokenKey);
+      await _preferences.remove(spRefreshTokenKey);
     } catch (e) {
       throw CacheException(message: e.toString());
     }
