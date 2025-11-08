@@ -68,12 +68,11 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<TokenPairModel> refreshTokens({required String refreshToken}) async {
     try {
-      final response = await _client
-          .post(
-            Uri.http(baseUrl, refreshTokensEndpoint),
-            headers: requestHeaders,
-            body: jsonEncode({'RefreshToken': refreshToken}),
-          );
+      final response = await _client.post(
+        Uri.http(baseUrl, refreshTokensEndpoint),
+        headers: requestHeaders,
+        body: jsonEncode({'RefreshToken': refreshToken}),
+      );
 
       if (response.statusCode != 200) {
         throw ServerException(
@@ -105,20 +104,19 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     required bool gender,
   }) async {
     try {
-      final response = await _client
-          .post(
-            Uri.http(baseUrl, registerUserEndpoint),
-            headers: requestHeaders,
-            body: jsonEncode({
-              'UserRole': 'client',
-              'PhoneNumber': phoneNumber,
-              'Password': password,
-              'Name': name,
-              'Surname': surname,
-              'BirthDate': birthDate,
-              'Gender': gender,
-            }),
-          );
+      final response = await _client.post(
+        Uri.http(baseUrl, registerUserEndpoint),
+        headers: requestHeaders,
+        body: jsonEncode({
+          'UserRole': 'client',
+          'PhoneNumber': phoneNumber,
+          'Password': password,
+          'Name': name,
+          'Surname': surname,
+          'BirthDate': birthDate,
+          'Gender': gender,
+        }),
+      );
 
       if (response.statusCode != 201 && response.statusCode != 204) {
         throw ServerException(
