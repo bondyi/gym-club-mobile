@@ -27,7 +27,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final nameController = TextEditingController();
   final surnameController = TextEditingController();
   final birthDateController = TextEditingController();
-  Gender gender = Gender.male;
+  Gender? _gender = Gender.male;
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -94,39 +94,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     formKey: formKey,
                   ),
                   const SizedBox(height: 10),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: ListTile(
-                          title: Text(
-                            AppLocalizations.of(context)!.genderMale,
-                          ),
-                          leading: RadioGroup(
-                            onChanged: (Gender? value) {
-                              setState(() {
-                                gender = value!;
-                              });
-                            },
-                            child: const Radio(value: Gender.male),
-                          ),
+                  RadioGroup<Gender>(
+                    groupValue: _gender,
+                    onChanged: (Gender? value) {
+                      setState(() {
+                        _gender = value;
+                      });
+                    },
+                    child: Column(
+                      children: [
+                        RadioListTile(
+                          title: Text(AppLocalizations.of(context)!.genderMale),
+                          value: Gender.male,
                         ),
-                      ),
-                      Expanded(
-                        child: ListTile(
-                          title: Text(
-                            AppLocalizations.of(context)!.genderFemale,
-                          ),
-                          leading: RadioGroup(
-                            onChanged: (Gender? value) {
-                              setState(() {
-                                gender = value!;
-                              });
-                            },
-                            child: const Radio(value: Gender.female),
-                          ),
+                        RadioListTile(
+                          title:
+                              Text(AppLocalizations.of(context)!.genderFemale),
+                          value: Gender.female,
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   const SizedBox(height: 10),
                   if (state is AuthLoading)
@@ -145,7 +132,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   name: nameController.text.trim(),
                                   surname: surnameController.text.trim(),
                                   birthDate: birthDateController.text.trim(),
-                                  gender: gender.value,
+                                  gender: _gender!.value,
                                 ),
                               );
                         }
