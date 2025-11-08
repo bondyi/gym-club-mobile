@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:gym_club_mobile/core/common/widgets/background.dart';
 import 'package:gym_club_mobile/core/common/widgets/custom_elevated_button.dart';
 import 'package:gym_club_mobile/core/extensions/context_extension.dart';
 import 'package:gym_club_mobile/core/utils/core_utils.dart';
+import 'package:gym_club_mobile/l10n/app_localizations.dart';
 import 'package:gym_club_mobile/src/profile/data/models/user_model.dart';
 import 'package:gym_club_mobile/src/profile/domain/entities/user.dart';
 import 'package:gym_club_mobile/src/profile/presentation/bloc/user_bloc.dart';
@@ -98,41 +98,21 @@ class _ProfileEditViewState extends State<ProfileEditView> {
                       formKey: formKey,
                     ),
                     const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: ListTile(
-                            title: Text(
-                              AppLocalizations.of(context)!.genderMale,
-                            ),
-                            leading: Radio<Gender>(
-                              value: Gender.male,
-                              groupValue: gender,
-                              onChanged: (Gender? value) {
-                                setState(() {
-                                  gender = value!;
-                                });
-                              },
-                            ),
+                    RadioGroup<Gender>(
+                      groupValue: gender,
+                      onChanged: (Gender? value) {
+                        setState(() {
+                          gender = value!;
+                        });
+                      },
+                      child: const Column(
+                        children: [
+                          Radio<Gender>(
+                            value: Gender.male,
                           ),
-                        ),
-                        Expanded(
-                          child: ListTile(
-                            title: Text(
-                              AppLocalizations.of(context)!.genderFemale,
-                            ),
-                            leading: Radio<Gender>(
-                              value: Gender.female,
-                              groupValue: gender,
-                              onChanged: (Gender? value) {
-                                setState(() {
-                                  gender = value!;
-                                });
-                              },
-                            ),
-                          ),
-                        ),
-                      ],
+                          Radio<Gender>(value: Gender.female),
+                        ],
+                      ),
                     ),
                     const SizedBox(height: 10),
                     if (state is UserLoading)

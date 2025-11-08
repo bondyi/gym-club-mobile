@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:gym_club_mobile/core/common/widgets/background.dart';
 import 'package:gym_club_mobile/core/common/widgets/custom_elevated_button.dart';
 import 'package:gym_club_mobile/core/extensions/context_extension.dart';
 import 'package:gym_club_mobile/core/utils/core_utils.dart';
+import 'package:gym_club_mobile/l10n/app_localizations.dart';
 import 'package:gym_club_mobile/src/auth/presentation/bloc/auth_bloc.dart';
 import 'package:gym_club_mobile/src/auth/presentation/views/login_screen.dart';
 import 'package:gym_club_mobile/src/auth/presentation/widgets/register_form.dart';
@@ -46,7 +46,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Scaffold(
       backgroundColor: context.theme.scaffoldBackgroundColor,
       body: BlocConsumer<AuthBloc, AuthState>(
-        listener: (_, state) {
+        listener: (_, state) async {
           if (state is AuthError) {
             CoreUtils.showSnackBar(context, state.message);
           } else if (state is UserRegistered) {
@@ -64,7 +64,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 );
             context.userProvider.initAuth(state.tokenPair.accessToken);
-            Navigator.pushReplacementNamed(context, Dashboard.routeName);
+            await Navigator.pushReplacementNamed(context, Dashboard.routeName);
           }
         },
         builder: (context, state) {
@@ -101,14 +101,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           title: Text(
                             AppLocalizations.of(context)!.genderMale,
                           ),
-                          leading: Radio<Gender>(
-                            value: Gender.male,
-                            groupValue: gender,
+                          leading: RadioGroup(
                             onChanged: (Gender? value) {
                               setState(() {
                                 gender = value!;
                               });
                             },
+                            child: const Radio(value: Gender.male),
                           ),
                         ),
                       ),
@@ -117,14 +116,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           title: Text(
                             AppLocalizations.of(context)!.genderFemale,
                           ),
-                          leading: Radio<Gender>(
-                            value: Gender.female,
-                            groupValue: gender,
+                          leading: RadioGroup(
                             onChanged: (Gender? value) {
                               setState(() {
                                 gender = value!;
                               });
                             },
+                            child: const Radio(value: Gender.female),
                           ),
                         ),
                       ),
@@ -155,10 +153,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   const SizedBox(height: 10),
                   TextButton(
-                    child:
-                        Text(AppLocalizations.of(context)!.authButtonSignIn),
-                    onPressed: () {
-                      Navigator.pushReplacementNamed(
+                    child: Text(AppLocalizations.of(context)!.authButtonSignIn),
+                    onPressed: () async {
+                      await Navigator.pushReplacementNamed(
                         context,
                         LoginScreen.routeName,
                       );

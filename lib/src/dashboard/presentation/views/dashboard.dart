@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:gym_club_mobile/core/extensions/context_extension.dart';
+import 'package:gym_club_mobile/l10n/app_localizations.dart';
 import 'package:gym_club_mobile/src/dashboard/presentation/providers/dashboard_controller.dart';
 import 'package:provider/provider.dart';
 
@@ -16,9 +16,9 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   @override
-  void initState() {
+  Future<void> initState() async {
     super.initState();
-    SystemChrome.setPreferredOrientations([
+    await SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
@@ -43,32 +43,30 @@ class _DashboardState extends State<Dashboard> {
               BottomNavigationBarItem(
                 icon: const Icon(Icons.home_outlined),
                 activeIcon: const Icon(Icons.home),
-                label: AppLocalizations.of(context)!
-                    .dashboardTabItemTitleHome,
+                label: AppLocalizations.of(context)!.dashboardTabItemTitleHome,
               ),
               BottomNavigationBarItem(
                 icon: const Icon(Icons.fitness_center_outlined),
                 activeIcon: const Icon(Icons.fitness_center),
-                label: AppLocalizations.of(context)!
-                    .dashboardTabItemTitleWorkout,
+                label:
+                    AppLocalizations.of(context)!.dashboardTabItemTitleWorkout,
               ),
               BottomNavigationBarItem(
                 icon: const Icon(Icons.event_outlined),
                 activeIcon: const Icon(Icons.event),
-                label: AppLocalizations.of(context)!
-                    .dashboardTabItemTitleLesson,
+                label:
+                    AppLocalizations.of(context)!.dashboardTabItemTitleLesson,
               ),
               BottomNavigationBarItem(
                 icon: const Icon(Icons.shopping_cart_outlined),
                 activeIcon: const Icon(Icons.shopping_cart),
-                label: AppLocalizations.of(context)!
-                    .dashboardTabItemTitleShop,
+                label: AppLocalizations.of(context)!.dashboardTabItemTitleShop,
               ),
               BottomNavigationBarItem(
                 icon: const Icon(Icons.account_circle_outlined),
                 activeIcon: const Icon(Icons.account_circle),
-                label: AppLocalizations.of(context)!
-                    .dashboardTabItemTitleProfile,
+                label:
+                    AppLocalizations.of(context)!.dashboardTabItemTitleProfile,
               ),
             ],
           ),

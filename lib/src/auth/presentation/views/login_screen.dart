@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:gym_club_mobile/core/common/widgets/background.dart';
 import 'package:gym_club_mobile/core/common/widgets/custom_elevated_button.dart';
 import 'package:gym_club_mobile/core/extensions/context_extension.dart';
 import 'package:gym_club_mobile/core/utils/core_utils.dart';
+import 'package:gym_club_mobile/l10n/app_localizations.dart';
 import 'package:gym_club_mobile/src/auth/presentation/bloc/auth_bloc.dart';
 import 'package:gym_club_mobile/src/auth/presentation/views/register_screen.dart';
 import 'package:gym_club_mobile/src/auth/presentation/widgets/login_form.dart';
@@ -36,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       backgroundColor: context.theme.scaffoldBackgroundColor,
       body: BlocConsumer<AuthBloc, AuthState>(
-        listener: (_, state) {
+        listener: (_, state) async {
           if (state is AuthError) {
             CoreUtils.showSnackBar(context, state.message);
           } else if (state is UserLoggedIn) {
@@ -47,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 );
             context.userProvider.initAuth(state.tokenPair.accessToken);
-            Navigator.pushReplacementNamed(context, Dashboard.routeName);
+            await Navigator.pushReplacementNamed(context, Dashboard.routeName);
           }
         },
         builder: (context, state) {
@@ -92,10 +92,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                     ),
                   TextButton(
-                    child:
-                        Text(AppLocalizations.of(context)!.authButtonSignUp),
-                    onPressed: () {
-                      Navigator.pushReplacementNamed(
+                    child: Text(AppLocalizations.of(context)!.authButtonSignUp),
+                    onPressed: () async {
+                      await Navigator.pushReplacementNamed(
                         context,
                         RegisterScreen.routeName,
                       );

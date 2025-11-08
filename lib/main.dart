@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:gym_club_mobile/core/common/app/providers/user_provider.dart';
 import 'package:gym_club_mobile/core/services/injection_container.dart';
 import 'package:gym_club_mobile/core/services/router.dart';
+import 'package:gym_club_mobile/l10n/app_localizations.dart';
 import 'package:gym_club_mobile/src/dashboard/presentation/providers/dashboard_controller.dart';
 import 'package:provider/provider.dart';
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import 'package:gym_club_mobile/core/common/widgets/custom_text_form_field.dart';
+import 'package:gym_club_mobile/l10n/app_localizations.dart';
 
 class EditForm extends StatefulWidget {
   const EditForm({

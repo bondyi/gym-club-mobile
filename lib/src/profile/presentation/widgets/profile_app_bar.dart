@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:gym_club_mobile/core/common/widgets/popup_item.dart';
 import 'package:gym_club_mobile/core/extensions/context_extension.dart';
 import 'package:gym_club_mobile/core/services/injection_container.dart';
 import 'package:gym_club_mobile/core/utils/core_utils.dart';
+import 'package:gym_club_mobile/l10n/app_localizations.dart';
 import 'package:gym_club_mobile/src/profile/data/models/user_model.dart';
 import 'package:gym_club_mobile/src/profile/presentation/bloc/user_bloc.dart';
 import 'package:gym_club_mobile/src/profile/presentation/views/profile_edit_view.dart';
