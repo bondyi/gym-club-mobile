@@ -81,7 +81,9 @@ class AuthRepositoryImpl implements AuthRepository {
   }) async {
     try {
       await _localDataSource.setTokens(
-        accessToken: accessToken, refreshToken: refreshToken,);
+        accessToken: accessToken,
+        refreshToken: refreshToken,
+      );
       return const Right(null);
     } on CacheException catch (e) {
       return Left(CacheFailure.fromException(e));

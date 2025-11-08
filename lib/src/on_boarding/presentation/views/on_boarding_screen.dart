@@ -22,10 +22,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   late PageController pageController;
 
   @override
-  void initState() {
+  Future<void> initState() async {
     selectedPage = 0;
     pageController = PageController(initialPage: selectedPage);
-    context.read<OnBoardingCubit>().checkIfUserIsFirstTimer();
+    await context.read<OnBoardingCubit>().checkIfUserIsFirstTimer();
 
     super.initState();
   }
@@ -38,11 +38,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       backgroundColor: context.theme.scaffoldBackgroundColor,
       body: Background(
         child: BlocConsumer<OnBoardingCubit, OnBoardingState>(
-          listener: (context, state) {
+          listener: (context, state) async {
             if (state is OnBoardingStatus && !state.isFirstTimer) {
-              Navigator.pushReplacementNamed(context, '/home');
+              await Navigator.pushReplacementNamed(context, '/home');
             } else if (state is UserCached) {
-              Navigator.pushReplacementNamed(context, '/');
+              await Navigator.pushReplacementNamed(context, '/');
             }
           },
           builder: (context, state) {
@@ -74,8 +74,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     selectedColor:
                         context.theme.buttonTheme.colorScheme!.primary,
                     duration: const Duration(milliseconds: 200),
-                    onItemClicked: (index) {
-                      pageController.animateToPage(
+                    onItemClicked: (index) async {
+                      await pageController.animateToPage(
                         index,
                         duration: const Duration(milliseconds: 200),
                         curve: Curves.easeInOut,

@@ -66,9 +66,7 @@ class ProfileView extends StatelessWidget {
                                   ),
                                 ),
                                 Icon(
-                                  user.gender == true
-                                      ? Icons.male
-                                      : Icons.female,
+                                  user.gender ? Icons.male : Icons.female,
                                   size: 32,
                                 ),
                               ],

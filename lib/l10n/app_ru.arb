@@ -1,38 +1,135 @@
 {
+  "@@locale": "ru",
   "onBoardingTitleFirst": "Добро пожаловать.",
+  "@onBoardingTitleFirst": {
+    "description": "Title displayed on the first onboarding screen"
+  },
   "onBoardingDescriptionFirst": "Это мобильное приложение для клиентов и тренеров тренажерного зала GymClub.",
+  "@onBoardingDescriptionFirst": {
+    "description": "Description text shown on the first onboarding screen explaining the app's purpose"
+  },
   "onBoardingTitleSecond": "Программы тренировок.",
+  "@onBoardingTitleSecond": {
+    "description": "Title displayed on the second onboarding screen"
+  },
   "onBoardingDescriptionSecond": "Подберите для себя подходящую программу тренировок и отслеживайте её прогресс.",
+  "@onBoardingDescriptionSecond": {
+    "description": "Description text shown on the second onboarding screen about training programs"
+  },
   "onBoardingTitleThird": "Занятия с тренерами.",
+  "@onBoardingTitleThird": {
+    "description": "Title displayed on the third onboarding screen"
+  },
   "onBoardingDescriptionThird": "Записывайтесь на групповые занятия с тренерами.",
+  "@onBoardingDescriptionThird": {
+    "description": "Description text shown on the third onboarding screen about trainer classes"
+  },
   "onBoardingButtonGetStarted": "Начать",
+  "@onBoardingButtonGetStarted": {
+    "description": "Button text to finish onboarding and proceed to the main app"
+  },
 
   "authLoginTitle": "Авторизация",
+  "@authLoginTitle": {
+    "description": "Title displayed on the login screen"
+  },
   "authRegisterTitle": "Регистрация",
+  "@authRegisterTitle": {
+    "description": "Title displayed on the registration screen"
+  },
   "phoneNumber": "Номер телефона",
+  "@phoneNumber": {
+    "description": "Label for phone number input field"
+  },
   "password": "Пароль",
+  "@password": {
+    "description": "Label for password input field"
+  },
   "confirmPassword": "Подтверждение пароля",
+  "@confirmPassword": {
+    "description": "Label for password confirmation input field"
+  },
   "name": "Имя",
+  "@name": {
+    "description": "Label for name input field"
+  },
   "surname": "Фамилия",
+  "@surname": {
+    "description": "Label for surname input field"
+  },
   "birthDate": "Дата рождения",
+  "@birthDate": {
+    "description": "Label for date of birth input field"
+  },
   "gender": "Пол",
+  "@gender": {
+    "description": "Label for gender selection"
+  },
   "genderMale": "Мужчина",
+  "@genderMale": {
+    "description": "Option for male gender selection"
+  },
   "genderFemale": "Женщина",
+  "@genderFemale": {
+    "description": "Option for female gender selection"
+  },
   "authButtonSignIn": "Войти",
+  "@authButtonSignIn": {
+    "description": "Button text to submit login form"
+  },
   "authButtonSignUp": "Зарегистрироваться",
+  "@authButtonSignUp": {
+    "description": "Button text to submit registration form"
+  },
   "authUserRegistered": "Регистрация прошла успешно!",
+  "@authUserRegistered": {
+    "description": "Success message shown after successful user registration"
+  },
 
   "textFormFieldValidatorRequired": "Это поле обязательно к заполнению",
+  "@textFormFieldValidatorRequired": {
+    "description": "Error message shown when a required field is empty"
+  },
   "textFormFieldValidatorPasswordMismatch": "Пароли не совпадают",
+  "@textFormFieldValidatorPasswordMismatch": {
+    "description": "Error message shown when password and confirm password fields don't match"
+  },
 
   "dashboardTabItemTitleHome": "Главная",
+  "@dashboardTabItemTitleHome": {
+    "description": "Title for the home tab in the bottom navigation bar"
+  },
   "dashboardTabItemTitleWorkout": "Тренировки",
+  "@dashboardTabItemTitleWorkout": {
+    "description": "Title for the workouts tab in the bottom navigation bar"
+  },
   "dashboardTabItemTitleLesson": "Занятия",
+  "@dashboardTabItemTitleLesson": {
+    "description": "Title for the lessons tab in the bottom navigation bar"
+  },
   "dashboardTabItemTitleShop": "Магазин",
+  "@dashboardTabItemTitleShop": {
+    "description": "Title for the shop tab in the bottom navigation bar"
+  },
   "dashboardTabItemTitleProfile": "Профиль",
+  "@dashboardTabItemTitleProfile": {
+    "description": "Title for the profile tab in the bottom navigation bar"
+  },
 
   "profilePopupItemTitleEdit": "Изменить",
+  "@profilePopupItemTitleEdit": {
+    "description": "Label for the edit option in profile popup menu"
+  },
   "profilePopupItemTitleLogout": "Выход",
+  "@profilePopupItemTitleLogout": {
+    "description": "Label for the logout option in profile popup menu"
+  },
   "editButtonSave": "Сохранить",
-  "buttonDelete": "Удалить"
+  "@editButtonSave": {
+    "description": "Button text to save changes in edit forms"
+  },
+  "buttonDelete": "Удалить",
+  "@buttonDelete": {
+    "description": "Button text for delete actions"
+  }
 }

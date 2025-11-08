@@ -1,14 +1,12 @@
 import 'package:equatable/equatable.dart';
-import 'package:gym_club_mobile/core/usecases/usecases.dart';
 import 'package:gym_club_mobile/core/utils/typedef.dart';
 import 'package:gym_club_mobile/src/auth/domain/repositories/auth_repository.dart';
 
-class RegisterUser extends UsecaseWithParams<void, RegisterUserParams> {
+class RegisterUser {
   const RegisterUser(this._repository);
 
   final AuthRepository _repository;
 
-  @override
   ResultFuture<void> call(RegisterUserParams params) async =>
       _repository.registerUser(
         phoneNumber: params.phoneNumber,

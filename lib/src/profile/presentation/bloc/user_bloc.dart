@@ -51,9 +51,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   }
 
   Future<void> _putUserHandler(
-      PutUserEvent event,
-      Emitter<UserState> emit,
-      ) async {
+    PutUserEvent event,
+    Emitter<UserState> emit,
+  ) async {
     emit(const UserLoading());
 
     final result = await _putUser(
@@ -61,34 +61,34 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     );
 
     result.fold(
-          (failure) => emit(UserError(failure.errorMessage)),
-          (user) => emit(UserInfoChanged(user)),
+      (failure) => emit(UserError(failure.errorMessage)),
+      (user) => emit(UserInfoChanged(user)),
     );
   }
 
   Future<void> _deleteUserHandler(
-      DeleteUserEvent event,
-      Emitter<UserState> emit,
-      ) async {
+    DeleteUserEvent event,
+    Emitter<UserState> emit,
+  ) async {
     final result = await _deleteUser(
       DeleteUserParams(id: event.id, accessToken: event.accessToken),
     );
 
     result.fold(
-          (failure) => emit(UserError(failure.errorMessage)),
-          (_) => emit(const UserLoggedOut()),
+      (failure) => emit(UserError(failure.errorMessage)),
+      (_) => emit(const UserLoggedOut()),
     );
   }
 
   Future<void> _logoutUserHandler(
-      LogoutUserEvent event,
-      Emitter<UserState> emit,
-      ) async {
+    LogoutUserEvent event,
+    Emitter<UserState> emit,
+  ) async {
     final result = await _logoutUser();
 
     result.fold(
-          (failure) => emit(UserError(failure.errorMessage)),
-          (tokenPair) => emit(const UserLoggedOut()),
+      (failure) => emit(UserError(failure.errorMessage)),
+      (tokenPair) => emit(const UserLoggedOut()),
     );
   }
 }

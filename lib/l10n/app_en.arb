@@ -1,38 +1,135 @@
 {
+  "@@locale": "en",
   "onBoardingTitleFirst": "Welcome.",
+  "@onBoardingTitleFirst": {
+    "description": "Title displayed on the first onboarding screen"
+  },
   "onBoardingDescriptionFirst": "This is a mobile application for clients and trainers of the GymClub gym.",
+  "@onBoardingDescriptionFirst": {
+    "description": "Description text shown on the first onboarding screen explaining the app's purpose"
+  },
   "onBoardingTitleSecond": "Training programs.",
+  "@onBoardingTitleSecond": {
+    "description": "Title displayed on the second onboarding screen"
+  },
   "onBoardingDescriptionSecond": "Choose a suitable training program for yourself and track its progress.",
+  "@onBoardingDescriptionSecond": {
+    "description": "Description text shown on the second onboarding screen about training programs"
+  },
   "onBoardingTitleThird": "Classes with trainers.",
+  "@onBoardingTitleThird": {
+    "description": "Title displayed on the third onboarding screen"
+  },
   "onBoardingDescriptionThird": "Sign up for group classes with trainers.",
+  "@onBoardingDescriptionThird": {
+    "description": "Description text shown on the third onboarding screen about trainer classes"
+  },
   "onBoardingButtonGetStarted": "Get started",
+  "@onBoardingButtonGetStarted": {
+    "description": "Button text to finish onboarding and proceed to the main app"
+  },
 
   "authLoginTitle": "Login",
+  "@authLoginTitle": {
+    "description": "Title displayed on the login screen"
+  },
   "authRegisterTitle": "Register",
+  "@authRegisterTitle": {
+    "description": "Title displayed on the registration screen"
+  },
   "phoneNumber": "Phone number",
+  "@phoneNumber": {
+    "description": "Label for phone number input field"
+  },
   "password": "Password",
+  "@password": {
+    "description": "Label for password input field"
+  },
   "confirmPassword": "Confirm password",
+  "@confirmPassword": {
+    "description": "Label for password confirmation input field"
+  },
   "name": "Name",
+  "@name": {
+    "description": "Label for name input field"
+  },
   "surname": "Surname",
+  "@surname": {
+    "description": "Label for surname input field"
+  },
   "birthDate": "Date of birth",
+  "@birthDate": {
+    "description": "Label for date of birth input field"
+  },
   "gender": "Gender",
+  "@gender": {
+    "description": "Label for gender selection"
+  },
   "genderMale": "Male",
+  "@genderMale": {
+    "description": "Option for male gender selection"
+  },
   "genderFemale": "Female",
+  "@genderFemale": {
+    "description": "Option for female gender selection"
+  },
   "authButtonSignIn": "Sign in",
+  "@authButtonSignIn": {
+    "description": "Button text to submit login form"
+  },
   "authButtonSignUp": "Sign up",
+  "@authButtonSignUp": {
+    "description": "Button text to submit registration form"
+  },
   "authUserRegistered": "Registration successful!",
+  "@authUserRegistered": {
+    "description": "Success message shown after successful user registration"
+  },
 
   "textFormFieldValidatorRequired": "This field is required",
+  "@textFormFieldValidatorRequired": {
+    "description": "Error message shown when a required field is empty"
+  },
   "textFormFieldValidatorPasswordMismatch": "Password do not match",
+  "@textFormFieldValidatorPasswordMismatch": {
+    "description": "Error message shown when password and confirm password fields don't match"
+  },
 
   "dashboardTabItemTitleHome": "Home",
+  "@dashboardTabItemTitleHome": {
+    "description": "Title for the home tab in the bottom navigation bar"
+  },
   "dashboardTabItemTitleWorkout": "Workouts",
+  "@dashboardTabItemTitleWorkout": {
+    "description": "Title for the workouts tab in the bottom navigation bar"
+  },
   "dashboardTabItemTitleLesson": "Lessons",
+  "@dashboardTabItemTitleLesson": {
+    "description": "Title for the lessons tab in the bottom navigation bar"
+  },
   "dashboardTabItemTitleShop": "Shop",
+  "@dashboardTabItemTitleShop": {
+    "description": "Title for the shop tab in the bottom navigation bar"
+  },
   "dashboardTabItemTitleProfile": "Profile",
+  "@dashboardTabItemTitleProfile": {
+    "description": "Title for the profile tab in the bottom navigation bar"
+  },
 
   "profilePopupItemTitleEdit": "Edit",
+  "@profilePopupItemTitleEdit": {
+    "description": "Label for the edit option in profile popup menu"
+  },
   "profilePopupItemTitleLogout": "Log out",
+  "@profilePopupItemTitleLogout": {
+    "description": "Label for the logout option in profile popup menu"
+  },
   "editButtonSave": "Save",
-  "buttonDelete": "Delete"
+  "@editButtonSave": {
+    "description": "Button text to save changes in edit forms"
+  },
+  "buttonDelete": "Delete",
+  "@buttonDelete": {
+    "description": "Button text for delete actions"
+  }
 }
