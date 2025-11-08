@@ -22,12 +22,13 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   late PageController pageController;
 
   @override
-  Future<void> initState() async {
+  void initState() {
+    super.initState(); // Call super first in initState
+
     selectedPage = 0;
     pageController = PageController(initialPage: selectedPage);
-    await context.read<OnBoardingCubit>().checkIfUserIsFirstTimer();
 
-    super.initState();
+    context.read<OnBoardingCubit>().checkIfUserIsFirstTimer();
   }
 
   @override
